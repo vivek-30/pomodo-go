@@ -1,0 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --light-bg-red: #fce0e0;
+  --dark-text-red: #f57c7c91;
+  --dark-bg-red: #f8d0d091;
+}
+
+li {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+body {
+  background-color: var(--light-bg-red);
+}

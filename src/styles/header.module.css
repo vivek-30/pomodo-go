@@ -1,0 +1,49 @@
+.primary-nav {
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-links-container {
+  min-width: 24rem;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: space-between;
+}
+
+.icon-btn-div {
+  display: flex;
+  justify-content: center;
+  background-color: var(--dark-bg-red);
+  border: 2px solid var(--dark-text-red);
+  font-size: 1.08rem;
+  padding: .7rem 1rem;
+  border-radius: 5px;
+  gap: .6rem;
+}
+
+.icon-btn-div:hover {
+  transform: scale(.97);
+}
+
+.divider {
+  height: 1px;
+  width: 96%;
+  background-color: var(--dark-text-red);
+  opacity: .6;
+  margin: -10px auto 0;
+}
+
+@media screen and (max-width: 800px) {
+  .nav-links {
+    justify-content: center;
+    gap: .8rem
+  }
+
+  .icon-btn-div > span {
+    display: none;
+  }
+}
