@@ -1,5 +1,11 @@
 import Header from '@components/Header';
+import { Poppins } from 'next/font/google';
 import '@styles/globals.css';
+
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['300', '600', '800']
+});
 
 export const metadata = {
   charset: 'utf-8',
@@ -19,7 +25,7 @@ export const metadata = {
 const RootLayout = ({ children }) => {
   return (
     <html lang="en">
-      <body>
+      <body className={poppins.className}>
         <Header />
         { children }
       </body>
