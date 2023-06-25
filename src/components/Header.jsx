@@ -7,7 +7,7 @@ const Header = () => {
     <header>
       <nav className={styles['primary-nav']}>
         <div className={styles.logo}>
-          <Link href="/">
+          <Link href="/" as="image">
             <Image
               src="/assets/images/logo-transparent.png"
               alt="pomodoGO logo"

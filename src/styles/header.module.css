@@ -5,18 +5,15 @@
   align-items: center;
 }
 
-.nav-links-container {
-  min-width: 24rem;
-}
-
 .nav-links {
   display: flex;
-  justify-content: space-between;
+  gap: .3rem;
 }
 
 .icon-btn-div {
   display: flex;
   justify-content: center;
+  align-items: center;
   background-color: var(--dark-bg-red);
   border: 2px solid var(--dark-text-red);
   font-size: 1.08rem;
