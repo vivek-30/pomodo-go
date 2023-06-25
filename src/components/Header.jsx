@@ -21,7 +21,7 @@ const Header = () => {
           <ul role="list" className={styles['nav-links']}>
             <li>
               <Link href="/analytics">
-                <div className={styles['icon-btn-div']}>
+                <div className={`${styles['icon-btn-div']} flex-center`}>
                   <Image
                     src="/assets/icons/statistics.svg"
                     alt="analytics icon"
@@ -34,7 +34,7 @@ const Header = () => {
             </li>
             <li>
               <Link href="/about">
-                <div className={styles['icon-btn-div']}>
+                <div className={`${styles['icon-btn-div']} flex-center`}>
                   <Image
                     src="/assets/icons/more.svg"
                     alt="about icon"
@@ -47,7 +47,7 @@ const Header = () => {
             </li>
             <li>
               <Link href="/settings">
-                <div className={styles['icon-btn-div']}>
+                <div className={`${styles['icon-btn-div']} flex-center`}>
                   <Image
                     src="/assets/icons/settings.svg"
                     alt="settings icon"
@@ -61,7 +61,7 @@ const Header = () => {
           </ul>
         </div>
         <div className="profile">
-          <div className={styles['icon-btn-div']}>
+          <div className={`${styles['icon-btn-div']} flex-center`}>
             <Image
               src="/assets/icons/user.svg"
               alt="profile icon"

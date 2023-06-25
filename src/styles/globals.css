@@ -1,13 +1,25 @@
+:root {
+  /* Colors */
+  --body-light-red: #fce0e0;
+
+  --light-pink: #f8d0d091;
+  --dark-pink: #f57c7c91;
+  --light-red: #fcd4d4;
+  --dark-red: #a33232fc;
+
+  /* Gradients */
+  --light-red-shade-gradient: linear-gradient(to top, var(--light-red) 85%, var(--light-pink) 15%);
+
+  /* Text Colors */
+  --dark-grey-text: #3a3939;
+}
+
+/* ==================================================== Base Styles =================================================== */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-:root {
-  --light-bg-red: #fce0e0;
-  --dark-text-red: #f57c7c91;
-  --dark-bg-red: #f8d0d091;
 }
 
 li {
@@ -19,6 +31,28 @@ a {
   color: #000;
 }
 
+/* ==================================================== Base Classes ================================================== */
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.top-left-center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.text-truncate {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* ==================================================== Main Styles =================================================== */
+
 body {
-  background-color: var(--light-bg-red);
+  background-color: var(--body-light-red);
 }

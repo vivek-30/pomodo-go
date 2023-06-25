@@ -5,26 +5,19 @@
 }
 
 .timer-section {
-  display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 .status {
   width: max-content;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   gap: .8rem;
   border-radius: 2rem;
   font-size: 1.2rem;
   margin-bottom: 0.8rem;
   padding: .6rem .8rem;
-  color: #a33232fc;
-  font-weight: 800;
-  background-color: #fcd4d4;
-  border: 2px solid #a33232fc;
+  color: var(--dark-red);
+  background-color: var(--light-red);
+  border: 2px solid var(--dark-red);
 }
 
 .timer {
@@ -34,28 +27,28 @@
   height: 19rem;
   max-height: 20rem;
   border-radius: 50%;
-  border: .4rem solid #a33232fc;
+  border: .4rem solid var(--dark-red);
   box-shadow: 1px 1px 4px 10px #ebd4d4;
 }
 
 .timer p {
   position: absolute;
   left: 50%;
-  color: #a33232fc;
+  color: var(--dark-red);
 }
 
 .timer p:nth-child(1) {
   top: 50%;
   font-size: 4em;
-  font-weight: 600;
   transform: translate(-50%, -50%);
 }
 
 .timer p:nth-child(2) {
-  bottom: 25%;
-  background: linear-gradient(20deg, #f8c2c2, transparent);
+  bottom: 24%;
   width: max-content;
+  max-width: 13.5rem;
   transform: translate(-50%);
+  padding: .1rem;
 }
 
 .task-info {
@@ -63,11 +56,14 @@
 }
 
 .task-info > span {
+  background-image: var(--light-red-shade-gradient);
+  /* background-image: linear-gradient(to top, #f8cfcf, #fce2e2); */
+  box-shadow: 1px 1px 10px 1px #c5b3b3;
+  color: var(--dark-grey-text);
   margin: 0.5rem 0.2rem;
   padding: 0.4rem;
   font-size: 1.09rem;
-  border-radius: 3px;
-  background: linear-gradient(360deg, #f8cfcf, transparent);
+  border-radius: 6px;
 }
 
 .controls {
@@ -77,8 +73,9 @@
   margin: .8rem 0;
 }
 
-.controls span {
+.controls > span {
   position: relative;
+  cursor: pointer;
   background-color: #f8c2c2;
   border-radius: 1.1rem;
   width: 4.5rem;
@@ -86,11 +83,13 @@
   box-shadow: 1px 3px 8px #9e9c9c;
 }
 
+.controls > span:hover {
+  transform: scale(.98);
+  box-shadow: 1px 3px 5px #9e9c9c;
+}
+
 .controls span > img {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 .controls span:nth-child(2) {
