@@ -4,7 +4,7 @@ import styles from '@styles/page.module.css';
 
 const Page = () => {
   return (
-    <main className={styles['main-container']}>
+    <main className={`${styles['main-container']} flex-center`}>
       <section className={`${styles['timer-section']} flex-center`}>
         <div className={`${styles.status} flex-center`}>
           <Image src="/assets/icons/dart.svg" alt="darts icon" height={35} width={35} />

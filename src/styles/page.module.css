@@ -1,7 +1,6 @@
 .main-container {
   min-width: 375px;
-  width: 30%;
-  margin: 1rem auto 0;
+  flex-direction: column;
 }
 
 .timer-section {
@@ -12,6 +11,7 @@
   width: max-content;
   gap: .8rem;
   border-radius: 2rem;
+  margin-top: 1rem;
   font-size: 1.2rem;
   padding: .6rem .8rem;
   color: var(--dark-red);
