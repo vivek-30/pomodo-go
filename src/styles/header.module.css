@@ -1,13 +1,41 @@
 .primary-nav {
-  padding: 0 1rem;
-  display: flex;
-  justify-content: space-between;
+  height: 6.5rem;
+  display: grid;
+  position: relative;
   align-items: center;
+  grid-template-areas:
+    "logo icons icons profile";
+}
+
+.logo {
+  grid-area: logo;
+  position: absolute;
+  left: 5%;
 }
 
 .nav-links {
   display: flex;
+  justify-content: center;
   gap: .3rem;
+}
+
+.profile {
+  grid-area: profile;
+  position: absolute;
+  right: 5%;
+}
+
+.logo, .profile div {
+  width: 30%;
+}
+
+.nav-links-container {
+  grid-area: icons;
+  width: 100%;
+}
+
+.icon-btn-div, .profile > div {
+  gap: .5rem;
 }
 
 .icon-btn-div {
@@ -18,7 +46,6 @@
   font-size: 1.08rem;
   padding: .7rem 1rem;
   border-radius: 5px;
-  gap: .6rem;
 }
 
 .icon-btn-div:hover {
@@ -27,19 +54,22 @@
 
 .divider {
   height: 1px;
-  width: 96%;
   background-color: var(--dark-pink);
   opacity: .6;
-  margin: -10px auto 0;
 }
 
-@media screen and (max-width: 800px) {
-  .nav-links {
-    justify-content: center;
-    gap: .8rem
-  }
-
+@media screen and (max-width: 750px) {
   .icon-btn-div > span {
+    display: none;
+  }
+}
+
+@media  screen and (max-width: 500px) {
+  .primary-nav {
+    grid-template-areas:
+      "logo icons profile";
+  }
+  .nav-links {
     display: none;
   }
 }

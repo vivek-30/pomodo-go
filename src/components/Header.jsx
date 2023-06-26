@@ -60,15 +60,24 @@ const Header = () => {
             </li>
           </ul>
         </div>
-        <div className="profile">
-          <div className={`${styles['icon-btn-div']} flex-center`}>
-            <Image
-              src="/assets/icons/user.svg"
-              alt="profile icon"
-              height={20}
-              width={20}
-            />
-            <span>Profile</span>
+        <div className={styles.profile}>
+          <div className="flex-center">
+            <span>
+              <Image
+                src="/assets/icons/user.svg"
+                alt="profile icon"
+                height={35}
+                width={35}
+              />
+            </span>
+            <span>
+              <Image
+                src="/assets/icons/more.svg"
+                alt="more icon"
+                height={20}
+                width={20}
+              />
+            </span>
           </div>
         </div>
       </nav>
