@@ -56,3 +56,12 @@ a {
 body {
   background-color: var(--body-light-red);
 }
+
+/* main {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+}
+
+section {
+  scroll-snap-align: start;
+} */

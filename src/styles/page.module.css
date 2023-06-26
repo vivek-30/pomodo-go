@@ -13,7 +13,6 @@
   gap: .8rem;
   border-radius: 2rem;
   font-size: 1.2rem;
-  margin-bottom: 0.8rem;
   padding: .6rem .8rem;
   color: var(--dark-red);
   background-color: var(--light-red);
@@ -23,7 +22,7 @@
 .timer {
   position: relative;
   width: 20rem;
-  margin: 1rem 0;
+  margin: 1.3rem 0;
   height: 19rem;
   max-height: 20rem;
   border-radius: 50%;
@@ -60,8 +59,8 @@
   /* background-image: linear-gradient(to top, #f8cfcf, #fce2e2); */
   box-shadow: 1px 1px 10px 1px #c5b3b3;
   color: var(--dark-grey-text);
-  margin: 0.5rem 0.2rem;
-  padding: 0.4rem;
+  margin: .5rem .2rem;
+  padding: .4rem;
   font-size: 1.09rem;
   border-radius: 6px;
 }
@@ -84,7 +83,7 @@
 }
 
 .controls > span:hover {
-  transform: scale(.98);
+  transform: scale(.99);
   box-shadow: 1px 3px 5px #9e9c9c;
 }
 
@@ -96,4 +95,11 @@
   background-color: #f87b7bf0;
   width: 5.8rem;
   height: 4.2rem;
+}
+
+.divider {
+  height: 1px;
+  width: 25rem;
+  background-color: var(--dark-pink);
+  opacity: .6;
 }

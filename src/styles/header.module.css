@@ -13,7 +13,7 @@
 .icon-btn-div {
   color: var(--dark-grey-text);
   background-color: var(--light-pink);
-  border: 2px solid var(--dark-pink);
+  /* border: 2px solid var(--dark-pink); */
   cursor: pointer;
   font-size: 1.08rem;
   padding: .7rem 1rem;
