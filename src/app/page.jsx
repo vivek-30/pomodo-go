@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import AddTask from '@components/AddTask';
+// import AddTask from '@components/AddTask';
 import styles from '@styles/page.module.css';
 
 const Page = () => {
@@ -32,7 +32,7 @@ const Page = () => {
           </span>
         </div>
       </section>
-      <section className='tasks-section'>
+      {/* <section className='tasks-section'>
         <AddTask />
         <div className="available-tasks">
           <div className="tasks-filter-container">
@@ -73,7 +73,7 @@ const Page = () => {
             </ul>
           </div>
         </div>
-      </section>
+      </section> */}
     </main>
   );
 }

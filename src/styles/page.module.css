@@ -103,3 +103,28 @@
   background-color: var(--dark-pink);
   opacity: .6;
 }
+
+@media screen and (max-width: 750px) {
+  .timer {
+    width: 17rem;
+    height: 16rem;
+  }
+
+  .timer p:nth-child(1) {
+    font-size: 3rem;
+  }
+
+  .status {
+    gap: .6rem;
+    font-size: .9rem;
+    padding: .4rem .8rem;
+  }  
+
+  .task-info span {
+    font-size: .9rem;
+  }
+
+  .divider {
+    width: 21rem;
+  }
+}
