@@ -1,4 +1,5 @@
 .primary-nav {
+  min-width: 375px;
   height: 6.5rem;
   display: grid;
   position: relative;
@@ -54,6 +55,7 @@
 
 .divider {
   height: 1px;
+  min-width: 375px;
   background-color: var(--dark-pink);
   opacity: .6;
 }
