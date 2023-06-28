@@ -1,5 +1,6 @@
 import Image from 'next/image';
-// import AddTask from '@components/AddTask';
+import Tasks from '@components/Tasks';
+import AddTask from '@components/AddTask';
 import styles from '@styles/page.module.css';
 
 const Page = () => {
@@ -32,48 +33,10 @@ const Page = () => {
           </span>
         </div>
       </section>
-      {/* <section className='tasks-section'>
+      <section className='tasks-section'>
         <AddTask />
-        <div className="available-tasks">
-          <div className="tasks-filter-container">
-            <span>All</span>
-            <span>Pending</span>
-            <span>Completed</span>
-          </div>
-          <div className="tasks">
-            <ul role="list">
-              <li>
-                <div>
-                  <span>name</span>
-                  <span>Rounds 2/3</span>
-                </div>
-                <div>Task description.... <span>Read More</span></div>
-              </li>
-              <li>
-                <div>
-                  <span>name</span>
-                  <span>Rounds 2/3</span>
-                </div>
-                <div>Task description.... <span>Read More</span></div>
-              </li>
-              <li>
-                <div>
-                  <span>name</span>
-                  <span>Rounds 2/3</span>
-                </div>
-                <div>Task description.... <span>Read More</span></div>
-              </li>
-              <li>
-                <div>
-                  <span>name</span>
-                  <span>Rounds 2/3</span>
-                </div>
-                <div>Task description.... <span>Read More</span></div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section> */}
+        <Tasks />
+      </section>
     </main>
   );
 }
