@@ -32,11 +32,11 @@ const AddTask = () => {
       <form className={styles['add-task-form']}>
         <div className={styles['input-field']}>
           <label htmlFor="title">Create a new task:</label>
-          <input id="title" type="text" placeholder="What it's all about?" spellcheck="false" required />
+          <input id="title" type="text" placeholder="What it's all about?" spellCheck="false" required />
         </div>
         <div className={styles['input-field']}>
           <label htmlFor="description">Want to add description:</label>
-          <textarea id="description" type="text" placeholder="eg - Essential for my physique...." spellcheck="false" />
+          <textarea id="description" type="text" placeholder="eg - Essential for my physique...." spellCheck="false" />
         </div>
         <div className={styles['input-field']}>
           <label htmlFor="rounds">Number of rounds you want to go for:</label>
