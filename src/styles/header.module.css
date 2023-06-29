@@ -60,6 +60,62 @@
   opacity: .6;
 }
 
+.profile-nav {
+  position: absolute;
+  border-radius: 0.5rem;
+  opacity: 1;
+  top: 85%;
+  right: 1.5%;
+  width: 14.5rem;
+  background-color: var(--white-theme-bg);
+  transition: opactiy 2s ease-in;
+  padding: 0.5rem 1rem;
+  z-index: 2;
+}
+
+.profile-nav ul li {
+  margin: 0.5rem 0;
+  padding: 0.8rem 0.6rem;
+  border-bottom: 1px solid var(--dark-grey-text);
+  color: var(--dark-grey-text);
+  width: 100%;
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+  opacity: .7;
+}
+
+.profile-nav li:last-child {
+  border-bottom: 0;
+  border-radius: .4rem;
+}
+
+.primary-nav ul li:last-child:hover {
+  background-color: var(--light-red);
+  color: var(--dark-red);
+}
+
+.profile-nav ul li:hover {
+  opacity: 1;
+}
+
+.primary-nav:focus {
+  opacity: 1;
+}
+
+.profile-nav::before {
+  content: '';
+  position: absolute;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: var(--white-theme-bg);
+  transform: rotate(45deg);
+  right: 21%;
+  top: -3.5%;
+  z-index: 2;
+}
+
+
 @media screen and (max-width: 750px) {
   .icon-btn-div > span {
     display: none;

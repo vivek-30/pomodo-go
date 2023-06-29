@@ -78,6 +78,7 @@
   padding: 10px;
   width: 21rem;
   height: 6rem;
+  background-color: whitesmoke; /* for long break #e2f5ff */
   overflow: scroll;
   
   /* For showing only 3 lines of text at a time */

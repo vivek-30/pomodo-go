@@ -80,6 +80,55 @@ const Header = () => {
             </span>
           </div>
         </div>
+        <div className={styles['profile-nav']}>
+          <ul role="list">
+            <li>
+              <Image
+                src="/assets/icons/statistics.svg"
+                alt="analytics icon"
+                height={20}
+                width={20}
+              />
+              <span>Dark Mode</span>
+            </li>
+            <li>
+              <Image
+                src="/assets/icons/statistics.svg"
+                alt="analytics icon"
+                height={20}
+                width={20}
+              />
+              <span>Analytics</span>
+            </li>
+            <li>
+              <Image
+                src="/assets/icons/statistics.svg"
+                alt="analytics icon"
+                height={20}
+                width={20}
+              />
+              <span>About</span>
+            </li>
+            <li>
+              <Image
+                src="/assets/icons/statistics.svg"
+                alt="analytics icon"
+                height={20}
+                width={20}
+              />
+              <span>SignOut</span>
+            </li>
+            <li>
+              <Image
+                src="/assets/icons/statistics.svg"
+                alt="analytics icon"
+                height={20}
+                width={20}
+              />
+              <span>Delete Account</span>
+            </li>
+          </ul>
+        </div>
       </nav>
       <div className={styles.divider}></div>
     </header>
