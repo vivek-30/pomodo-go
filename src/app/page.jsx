@@ -37,6 +37,9 @@ const Page = () => {
         <AddTask />
         <Tasks />
       </section>
+      <div className={styles['music-box']}>
+        <Image src="/assets/icons/music.svg" alt="headphone icon" height={80} width={80} />
+      </div>
     </main>
   );
 }

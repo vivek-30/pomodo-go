@@ -104,6 +104,17 @@
   opacity: .6;
 }
 
+.music-box {
+  position: fixed;
+  max-width: 9rem;
+  height: 5rem;
+  border-radius: 50%;
+  background-color: var(--light-red);
+  left: 3%;
+  bottom: 7%;
+  z-index: 10;
+}
+
 @media screen and (max-width: 750px) {
   .timer {
     width: 17rem;
