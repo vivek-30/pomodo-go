@@ -23,13 +23,13 @@ const Page = () => {
         <div className={styles.divider}></div>
         <div className={styles.controls}>
           <span>
-            <Image className="top-left-center" src="/assets/icons/more.svg" alt="more-options icon" height={50} width={50} />
+            <Image className="top-left-center" src="/assets/icons/alarm.svg" alt="clock icon" height={44} width={44} />
           </span>
           <span>
-            <Image className="top-left-center" src="/assets/icons/play.svg" alt="play-button icon" height={50} width={50} />
+            <Image className="top-left-center" src="/assets/icons/play.svg" alt="play icon" height={50} width={50} />
           </span>
           <span>
-            <Image className="top-left-center" src="/assets/icons/forward.svg" alt="foward-button icon" height={50} width={50} />
+            <Image className="top-left-center" src="/assets/icons/forward.svg" alt="foward icon" height={50} width={50} />
           </span>
         </div>
       </section>

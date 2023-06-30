@@ -6,20 +6,20 @@ const AddTask = () => {
     <div className={`${styles['tasks-container']} flex-center`}>
       <div className={`${styles.controls}`}>
         <button className={`${styles['icon-btn']} flex-center ${styles['btn-lg']}`}>
-          <Image src="/assets/icons/more.svg" alt="add icon" height={30} width={30}/>
+          <Image src="/assets/icons/edit.svg" alt="add icon" height={30} width={30}/>
           <span>Create Task</span>
         </button>
         <div>
           <button className={`${styles['icon-btn']} flex-center`}>
-            <Image src="/assets/icons/more.svg" alt="add icon" height={30} width={30}/>
+            <Image src="/assets/icons/back-arrow.svg" alt="back icon" height={30} width={30}/>
             <span>Back</span>
           </button>
           <button className={`${styles['icon-btn']} flex-center`}>
-            <Image src="/assets/icons/more.svg" alt="add icon" height={30} width={30}/>
+            <Image src="/assets/icons/close.svg" alt="cancel icon" height={30} width={30}/>
             <span>Cancel</span>
           </button>
           <button className={`${styles['icon-btn']} flex-center`}>
-            <Image src="/assets/icons/more.svg" alt="add icon" height={30} width={30}/>
+            <Image src="/assets/icons/next-arrow.svg" alt="next icon" height={30} width={30}/>
             <span>Next</span>
           </button>
         </div>

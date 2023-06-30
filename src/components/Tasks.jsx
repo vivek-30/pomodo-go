@@ -17,9 +17,9 @@ const Tasks = () => {
               <span className="text-truncate">Complete pomodoro Project</span>
               <div className={styles['task-control-icons']}>
                 <span className={styles.rounds}>3/4</span>
-                <span><Image src="/assets/icons/forward.svg" alt="foward-button icon" height={20} width={20} /></span>
-                <span><Image src="/assets/icons/forward.svg" alt="foward-button icon" height={20} width={20} /></span>
-                <span><Image src="/assets/icons/forward.svg" alt="foward-button icon" height={20} width={20} /></span>
+                <span><Image src="/assets/icons/edit.svg" alt="edit icon" height={20} width={20} /></span>
+                <span><Image src="/assets/icons/delete.svg" alt="delete icon" height={20} width={20} /></span>
+                <span><Image src="/assets/icons/description.svg" alt="description icon" height={20} width={20} /></span>
               </div>
             </div>
             <div className={styles['task-body']}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat molestiae dolorem nesciunt tempora consequatur similique aspernatur nostrum officiis consectetur sunt ullam assumenda, iste laudantium aut aperiam omnis cupiditate earum odit ex molestias facere nam? Recusandae nostrum, cumque vero excepturi.
@@ -31,9 +31,9 @@ const Tasks = () => {
               <span className="text-truncate">Do workout yoo!!!</span>
               <div className={styles['task-control-icons']}>
                 <span className={styles.rounds}>3/4</span>
-                <span><Image src="/assets/icons/forward.svg" alt="foward-button icon" height={20} width={20} /></span>
-                <span><Image src="/assets/icons/forward.svg" alt="foward-button icon" height={20} width={20} /></span>
-                <span><Image src="/assets/icons/forward.svg" alt="foward-button icon" height={20} width={20} /></span>
+                <span><Image src="/assets/icons/edit.svg" alt="edit icon" height={20} width={20} /></span>
+                <span><Image src="/assets/icons/delete.svg" alt="delete icon" height={20} width={20} /></span>
+                <span><Image src="/assets/icons/description.svg" alt="description icon" height={20} width={20} /></span>
               </div>
             </div>
             {/* <div className={styles['task-body']}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat molestiae dolorem nesciunt tempora consequatur similique aspernatur nostrum officiis consectetur sunt ullam assumenda, iste laudantium aut aperiam omnis cupiditate earum odit ex molestias facere nam? Recusandae nostrum, cumque vero excepturi praesentium minima voluptatibus dolores tempore voluptatum suscipit dolorum tenetur dicta quo <span>Read More</span></div> */}
@@ -43,9 +43,9 @@ const Tasks = () => {
               <span className="text-truncate">Do college assignment</span>
               <div className={styles['task-control-icons']}>
                 <span className={styles.rounds}>3/4</span>
-                <span><Image src="/assets/icons/forward.svg" alt="foward-button icon" height={20} width={20} /></span>
-                <span><Image src="/assets/icons/forward.svg" alt="foward-button icon" height={20} width={20} /></span>
-                <span><Image src="/assets/icons/forward.svg" alt="foward-button icon" height={20} width={20} /></span>
+                <span><Image src="/assets/icons/edit.svg" alt="edit icon" height={20} width={20} /></span>
+                <span><Image src="/assets/icons/delete.svg" alt="delete icon" height={20} width={20} /></span>
+                <span><Image src="/assets/icons/description.svg" alt="description icon" height={20} width={20} /></span>
               </div>
             </div>
             {/* <div className={styles['task-body']}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat molestiae dolorem nesciunt tempora consequatur similique aspernatur nostrum officiis consectetur sunt ullam assumenda, iste laudantium aut aperiam omnis cupiditate earum odit ex molestias facere nam? Recusandae nostrum, cumque vero excepturi praesentium minima voluptatibus dolores tempore voluptatum suscipit dolorum tenetur dicta quo <span>Read More</span></div> */}
@@ -55,9 +55,9 @@ const Tasks = () => {
               <span className="text-truncate">Play PUBG</span>
               <div className={styles['task-control-icons']}>
                 <span className={styles.rounds}>3/4</span>
-                <span><Image src="/assets/icons/forward.svg" alt="foward-button icon" height={20} width={20} /></span>
-                <span><Image src="/assets/icons/forward.svg" alt="foward-button icon" height={20} width={20} /></span>
-                <span><Image src="/assets/icons/forward.svg" alt="foward-button icon" height={20} width={20} /></span>
+                <span><Image src="/assets/icons/edit.svg" alt="edit icon" height={20} width={20} /></span>
+                <span><Image src="/assets/icons/delete.svg" alt="delete icon" height={20} width={20} /></span>
+                <span><Image src="/assets/icons/description.svg" alt="description icon" height={20} width={20} /></span>
               </div>
             </div>
             {/* <div className={styles['task-body']}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat molestiae dolorem nesciunt tempora consequatur similique aspernatur nostrum officiis consectetur sunt ullam assumenda, iste laudantium aut aperiam omnis cupiditate earum odit ex molestias facere nam? Recusandae nostrum, cumque vero excepturi praesentium minima voluptatibus dolores tempore voluptatum suscipit dolorum tenetur dicta quo <span>Read More</span></div> */}

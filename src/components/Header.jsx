@@ -36,8 +36,8 @@ const Header = () => {
               <Link href="/about">
                 <div data-tool-tip="About" className={`${styles['icon-btn-div']} flex-center`}>
                   <Image
-                    src="/assets/icons/more.svg"
-                    alt="about icon"
+                    src="/assets/icons/description.svg"
+                    alt="description icon"
                     height={20}
                     width={20}
                   />
@@ -72,8 +72,8 @@ const Header = () => {
             </span>
             <span>
               <Image
-                src="/assets/icons/more.svg"
-                alt="more icon"
+                src="/assets/icons/down-arrow.svg"
+                alt="down icon"
                 height={20}
                 width={20}
               />
@@ -84,8 +84,8 @@ const Header = () => {
           <ul role="list">
             <li>
               <Image
-                src="/assets/icons/statistics.svg"
-                alt="analytics icon"
+                src="/assets/icons/magic-stick.svg"
+                alt="magic stick icon"
                 height={20}
                 width={20}
               />
@@ -102,8 +102,8 @@ const Header = () => {
             </li>
             <li>
               <Image
-                src="/assets/icons/statistics.svg"
-                alt="analytics icon"
+                src="/assets/icons/description.svg"
+                alt="description icon"
                 height={20}
                 width={20}
               />
@@ -111,8 +111,8 @@ const Header = () => {
             </li>
             <li>
               <Image
-                src="/assets/icons/statistics.svg"
-                alt="analytics icon"
+                src="/assets/icons/logout.svg"
+                alt="logout icon"
                 height={20}
                 width={20}
               />
@@ -120,8 +120,8 @@ const Header = () => {
             </li>
             <li>
               <Image
-                src="/assets/icons/statistics.svg"
-                alt="analytics icon"
+                src="/assets/icons/delete.svg"
+                alt="delete icon"
                 height={20}
                 width={20}
               />
