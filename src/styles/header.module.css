@@ -26,6 +26,10 @@
   right: 5%;
 }
 
+.profile span {
+  cursor: pointer;
+}
+
 .logo, .profile div {
   width: 30%;
 }
@@ -50,7 +54,7 @@
 }
 
 .icon-btn-div:hover {
-  transform: scale(.99);
+  transform: scale(.98);
 }
 
 .divider {
@@ -81,6 +85,7 @@
   width: 100%;
   display: flex;
   gap: 1.2rem;
+  cursor: pointer;
   align-items: center;
   opacity: .7;
 }
@@ -90,7 +95,7 @@
   border-radius: .4rem;
 }
 
-.primary-nav ul li:last-child:hover {
+.profile-nav ul li:last-child:hover {
   background-color: var(--light-red);
   color: var(--dark-red);
 }
@@ -99,7 +104,7 @@
   opacity: 1;
 }
 
-.primary-nav:focus {
+.profile-nav:focus {
   opacity: 1;
 }
 

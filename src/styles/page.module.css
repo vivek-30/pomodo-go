@@ -112,6 +112,7 @@
   background-color: var(--light-red);
   left: 3%;
   bottom: 7%;
+  cursor: pointer;
   z-index: 10;
 }
 

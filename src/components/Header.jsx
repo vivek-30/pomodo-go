@@ -38,8 +38,8 @@ const Header = () => {
                   <Image
                     src="/assets/icons/description.svg"
                     alt="description icon"
-                    height={20}
-                    width={20}
+                    height={22}
+                    width={22}
                   />
                   <span>About</span>
                 </div>
@@ -104,8 +104,8 @@ const Header = () => {
               <Image
                 src="/assets/icons/description.svg"
                 alt="description icon"
-                height={20}
-                width={20}
+                height={22}
+                width={22}
               />
               <span>About</span>
             </li>
