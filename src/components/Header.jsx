@@ -1,13 +1,35 @@
+'use client';
+import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import styles from '@styles/header.module.css';
 
 const Header = () => {
+  const [isDropDownOpen, setIsDropDownOpen] = useState(false);
+  const router = useRouter();
+
+  const handleProfileNav = (e) => {
+    setIsDropDownOpen(currentState => !currentState);
+  }
+
+  const setDarkMode = () => {
+    console.log('dark mode enabled')
+  }
+
+  const handleUserSignOut = () => {
+    console.log('handling user signout')
+  }
+
+  const handleAccountDeletion = () => {
+    console.log('handling account deletion')
+  }
+
   return (
     <header>
       <nav className={styles['primary-nav']}>
         <div className={styles.logo}>
-          <Link href="/" as="image">
+          <Link href="/">
             <Image
               src="/assets/images/logo-transparent.png"
               alt="pomodoGO logo"
@@ -33,19 +55,6 @@ const Header = () => {
               </Link>
             </li>
             <li>
-              <Link href="/about">
-                <div data-tool-tip="About" className={`${styles['icon-btn-div']} flex-center`}>
-                  <Image
-                    src="/assets/icons/description.svg"
-                    alt="description icon"
-                    height={22}
-                    width={22}
-                  />
-                  <span>About</span>
-                </div>
-              </Link>
-            </li>
-            <li>
               <Link href="/settings">
                 <div data-tool-tip="Settings" className={`${styles['icon-btn-div']} flex-center`}>
                   <Image
@@ -58,10 +67,23 @@ const Header = () => {
                 </div>
               </Link>
             </li>
+            <li>
+              <Link href="/about">
+                <div data-tool-tip="About" className={`${styles['icon-btn-div']} flex-center`}>
+                  <Image
+                    src="/assets/icons/description.svg"
+                    alt="description icon"
+                    height={22}
+                    width={22}
+                  />
+                  <span>About</span>
+                </div>
+              </Link>
+            </li>
           </ul>
         </div>
         <div className={styles.profile}>
-          <div className="flex-center">
+          <div className="flex-center" onClick={handleProfileNav}>
             <span>
               <Image
                 src="/assets/icons/user.svg"
@@ -72,17 +94,17 @@ const Header = () => {
             </span>
             <span>
               <Image
-                src="/assets/icons/down-arrow.svg"
-                alt="down icon"
+                src={`/assets/icons/${isDropDownOpen ? 'up' : 'down'}-arrow.svg`}
+                alt={`${isDropDownOpen ? 'up' : 'down'} icon`}
                 height={20}
                 width={20}
               />
             </span>
           </div>
         </div>
-        <div className={styles['profile-nav']}>
+        <div className={`${styles['profile-nav']} ${!isDropDownOpen ? styles.close : ''}`}>
           <ul role="list">
-            <li>
+            <li onClick={setDarkMode}>
               <Image
                 src="/assets/icons/magic-stick.svg"
                 alt="magic stick icon"
@@ -91,7 +113,7 @@ const Header = () => {
               />
               <span>Dark Mode</span>
             </li>
-            <li>
+            <li onClick={() => router.push('/analytics')}>
               <Image
                 src="/assets/icons/statistics.svg"
                 alt="analytics icon"
@@ -100,7 +122,16 @@ const Header = () => {
               />
               <span>Analytics</span>
             </li>
-            <li>
+            <li onClick={() => router.push('/settings')}>
+              <Image
+                src="/assets/icons/settings.svg"
+                alt="settings icon"
+                height={22}
+                width={22}
+              />
+              <span>Settings</span>
+            </li>
+            <li onClick={() => router.push('/about')}>
               <Image
                 src="/assets/icons/description.svg"
                 alt="description icon"
@@ -109,7 +140,7 @@ const Header = () => {
               />
               <span>About</span>
             </li>
-            <li>
+            <li onClick={handleUserSignOut}>
               <Image
                 src="/assets/icons/logout.svg"
                 alt="logout icon"
@@ -118,7 +149,7 @@ const Header = () => {
               />
               <span>SignOut</span>
             </li>
-            <li>
+            <li onClick={handleAccountDeletion}>
               <Image
                 src="/assets/icons/delete.svg"
                 alt="delete icon"
