@@ -4,9 +4,9 @@ const timer = (time, setTime) => {
 
     if(time.seconds === 0) {
       if(time.minutes == 0) {
-        setTime({ hours: time.hours-1, minutes: 60, seconds: 0 });
+        setTime({ hours: time.hours-1, minutes: 59, seconds: 0 });
       } else {
-        setTime({ ...time, minutes: time.minutes - 1, seconds: 60 });
+        setTime({ ...time, minutes: time.minutes - 1, seconds: 59 });
       }
     } else {
       setTime({ ...time, seconds: time.seconds - 1 });

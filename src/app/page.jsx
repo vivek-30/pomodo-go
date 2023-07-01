@@ -72,7 +72,8 @@ const Page = () => {
             />
           </span>
           <span onClick={() => {
-            setTime({ hourse: 0, minutes: 0, seconds: 0 });
+            setIsPaused(true);
+            setTime({ hours: 0, minutes: 5, seconds: 0 });
           }}>
             <Image className="top-left-center" src="/assets/icons/forward.svg" alt="foward icon" height={50} width={50} />
           </span>
