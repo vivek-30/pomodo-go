@@ -1,10 +1,10 @@
-import styles from '@styles/loading.module.css';
+import styles from '@styles/pages/loading.module.scss';
 
 const Loading = () => {
   return (
-    <section className={`${styles['clock-container']} flex-center`}>
-      <div className={styles.clock}>
-        <span className='top-left-center'></span>
+    <section className={`${styles['loading__container']} flex-center`}>
+      <div className={styles['loading__container-clock']}>
+        <span className="top-left-center"></span>
       </div>
       <p>Loading</p>
     </section>

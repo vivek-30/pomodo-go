@@ -1,15 +1,16 @@
 'use client';
+
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import styles from '@styles/header.module.css';
+import styles from '@styles/components/header.module.scss';
 
 const Header = () => {
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
   const router = useRouter();
 
-  const handleProfileNav = (e) => {
+  const handleProfileNav = () => {
     setIsDropDownOpen(currentState => !currentState);
   }
 
@@ -27,8 +28,8 @@ const Header = () => {
 
   return (
     <header>
-      <nav className={styles['primary-nav']}>
-        <div className={styles.logo}>
+      <nav className={styles['nav']}>
+        <div className={styles['nav__logo']}>
           <Link href="/">
             <Image
               src="/assets/images/logo-transparent.png"
@@ -39,11 +40,11 @@ const Header = () => {
             />
           </Link>
         </div>
-        <div className={styles['nav-links-container']}>
-          <ul role="list" className={styles['nav-links']}>
+        <div className={styles['nav__links-container']}>
+          <ul role="list" className={styles['links-container__links']}>
             <li>
               <Link href="/analytics">
-                <div data-tool-tip="Analytics" className={`${styles['icon-btn-div']} flex-center`}>
+                <div data-tool-tip="Analytics" className={`${styles['links__btn']} flex-center`}>
                   <Image
                     src="/assets/icons/statistics.svg"
                     alt="analytics icon"
@@ -56,7 +57,7 @@ const Header = () => {
             </li>
             <li>
               <Link href="/settings">
-                <div data-tool-tip="Settings" className={`${styles['icon-btn-div']} flex-center`}>
+                <div data-tool-tip="Settings" className={`${styles['links__btn']} flex-center`}>
                   <Image
                     src="/assets/icons/settings.svg"
                     alt="settings icon"
@@ -69,7 +70,7 @@ const Header = () => {
             </li>
             <li>
               <Link href="/about">
-                <div data-tool-tip="About" className={`${styles['icon-btn-div']} flex-center`}>
+                <div data-tool-tip="About" className={`${styles['links__btn']} flex-center`}>
                   <Image
                     src="/assets/icons/description.svg"
                     alt="description icon"
@@ -82,7 +83,7 @@ const Header = () => {
             </li>
           </ul>
         </div>
-        <div className={styles.profile}>
+        <div className={styles['nav__profile']}>
           <div className="flex-center" onClick={handleProfileNav}>
             <span>
               <Image
@@ -102,7 +103,7 @@ const Header = () => {
             </span>
           </div>
         </div>
-        <div className={`${styles['profile-nav']} ${!isDropDownOpen ? styles.close : ''}`}>
+        <div className={`${styles['profile__sidenav']} ${!isDropDownOpen ? styles['sidenav--close'] : ''}`}>
           <ul role="list">
             <li onClick={setDarkMode}>
               <Image
@@ -161,7 +162,7 @@ const Header = () => {
           </ul>
         </div>
       </nav>
-      <div className={styles.divider}></div>
+      <div className={styles['divider']}></div>
     </header>
   );
 }
