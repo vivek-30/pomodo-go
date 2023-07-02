@@ -1,0 +1,115 @@
+@import '../utilities/variables';
+
+.add-task__container {
+  margin: 2rem auto;
+  min-width: 375px;
+  width: 30%;
+  flex-direction: column;
+}
+
+.add-task__control-section {
+  width: 100%;
+  margin: 1rem 0;
+
+  > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .3rem;
+  }
+}
+
+.control-section__btn {
+  gap: .5rem;
+  color: $dark-red;
+  background-color: $light-red;
+  border: 2px solid $dark-red;
+  // border: 2px solid $dark-pink;
+  cursor: pointer;
+  font-size: 1.08rem;
+  padding: .5rem 1rem;
+  border-radius: 7px;
+}
+
+.btn--lg {
+  width: 96%;
+  margin: 1rem auto;
+  color: #346634;
+  background-color: #bcdbbc8c;
+  border: 2px solid #346634;
+}
+
+.add-task__progress-bar {
+  width: 96%;
+  margin: 1rem 0;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.progress-bar__circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  position: relative;
+  background-color: $grey;
+
+  &::after {
+    content: '';
+    display: inline-block;
+    height: 3px;
+    width: 12rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: $grey;
+  }
+}
+
+.circle--active {
+  background-color: $dark-red;
+
+  &::after {
+    background-color: $dark-red;
+    z-index: 1;
+  }
+}
+
+.add-task__form {
+  width: 100%;
+}
+
+.form__input-field {
+  width: 96%;
+  margin: auto;
+
+  label {
+    display: block;
+    font-size: 1.1rem;
+    color: $dark-red;
+  }
+
+  input, textarea {
+    margin: 0.5rem 0;
+    padding: 0.6rem;
+    border: none;
+    border-radius: 6px;
+    width: 100%;
+    outline: 2px solid $dark-red;
+    color: $dark-grey-text;
+    background: $white-theme-bg;
+    font-size: 1.3rem;
+  }
+
+  textarea {
+    height: 6rem;
+    overflow: scroll;
+    resize: none;
+  }
+
+  input[type="number"] {
+    width: 37%;
+  }
+}
