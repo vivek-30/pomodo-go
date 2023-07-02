@@ -1,0 +1,19 @@
+@import 'normalize';
+@import 'utilities/variables';
+@import 'utilities/extends';
+
+.flex-center {
+  @extend %flex-center;
+}
+
+.top-left-center {
+  @extend %top-left-center;
+}
+
+.text-truncate {
+  @extend %text-truncate;
+}
+
+body {
+  background-color: $body-light-red;
+}
