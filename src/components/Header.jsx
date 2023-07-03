@@ -46,7 +46,7 @@ const Header = () => {
               <Link href="/analytics">
                 <div data-tool-tip="Analytics" className={`${styles['links__btn']} flex-center`}>
                   <Image
-                    src="/assets/icons/statistics.svg"
+                    src="/assets/icons/analytics.svg"
                     alt="analytics icon"
                     height={20}
                     width={20}
@@ -116,7 +116,7 @@ const Header = () => {
             </li>
             <li onClick={() => router.push('/analytics')}>
               <Image
-                src="/assets/icons/statistics.svg"
+                src="/assets/icons/analytics.svg"
                 alt="analytics icon"
                 height={20}
                 width={20}
