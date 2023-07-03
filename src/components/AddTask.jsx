@@ -9,7 +9,7 @@ const AddTask = () => {
           <Image src="/assets/icons/edit.svg" alt="add icon" height={30} width={30}/>
           <span>Create Task</span>
         </button>
-        <div>
+        <div className="flex-center">
           <button className={`${styles['control-section__btn']} flex-center`}>
             <Image src="/assets/icons/back-arrow.svg" alt="back icon" height={30} width={30}/>
             <span>Back</span>

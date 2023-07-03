@@ -1,4 +1,5 @@
 @import '../utilities/variables';
+@import '../utilities/extends';
 
 .add-task__container {
   margin: 2rem auto;
@@ -12,9 +13,6 @@
   margin: 1rem 0;
 
   > div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     gap: .3rem;
   }
 }
@@ -58,12 +56,10 @@
   &::after {
     content: '';
     display: inline-block;
+    @extend %top-left-center;
     height: 3px;
     width: 12rem;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     background-color: $grey;
   }
 }
@@ -92,8 +88,8 @@
   }
 
   input, textarea {
-    margin: 0.5rem 0;
-    padding: 0.6rem;
+    margin: .5rem 0;
+    padding: .6rem;
     border: none;
     border-radius: 6px;
     width: 100%;

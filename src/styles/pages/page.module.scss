@@ -1,4 +1,6 @@
 @import '../utilities/variables';
+@import '../utilities/mixins';
+@import '../utilities/media-queries';
 
 .main__container {
   min-width: 375px;
@@ -100,10 +102,7 @@
 }
 
 .divider {
-  height: 1px;
-  width: 25rem;
-  background-color: $dark-pink;
-  opacity: .6;
+  @include divider(25rem, $dark-pink);
 }
 
 .music__container {
@@ -118,7 +117,7 @@
   z-index: 10;
 }
 
-@media screen and (max-width: 750px) {
+@include lg-screens {
   .timer__box {
     width: 17rem;
     height: 16rem;
