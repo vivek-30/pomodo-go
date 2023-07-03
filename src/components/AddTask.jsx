@@ -6,7 +6,7 @@ const AddTask = () => {
     <div className={`${styles['add-task__container']} flex-center`}>
       <div className={`${styles['add-task__control-section']}`}>
         <button className={`${styles['control-section__btn']} flex-center ${styles['btn--lg']}`}>
-          <Image src="/assets/icons/edit.svg" alt="add icon" height={30} width={30}/>
+          <Image src="/assets/icons/add-new.svg" alt="add icon" height={25} width={25}/>
           <span>Create Task</span>
         </button>
         <div className="flex-center">

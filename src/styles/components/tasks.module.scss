@@ -36,7 +36,7 @@
   box-shadow: 0px 0px 15px 3px $grey;
   width: 100%;
   margin: 2rem 0;
-  max-height: 25rem;
+  max-height: 25.5rem;
   overflow: scroll;
 
   ul li {
@@ -64,7 +64,7 @@
   align-items: center;
 
   span {
-    padding: .2rem .2rem 0 .4rem;
+    padding: .2rem .3rem 0;
     cursor: pointer;
 
     &:hover {
@@ -75,6 +75,7 @@
 }
 
 .task-list__task-body {
+  margin-top: .4rem;
   border-top: 1px solid $dark-grey-text;
   font-size: .9rem;
   padding: 10px;
@@ -103,5 +104,5 @@
   padding: .8rem;
   cursor: pointer;
   background-color: $dark-pink;
-  color: $dark-grey-text;
+  color: #000;
 }
