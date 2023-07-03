@@ -1,0 +1,32 @@
+@mixin divider ($width, $bg-color, $opacity: .6) {
+  height: 1px;
+  width: $width;
+  background-color: $bg-color;
+  opacity: $opacity;
+}
+
+@mixin btn (
+  $border, 
+  $border-radius, 
+  $bg-color, 
+  $padding: .5rem 1rem,
+  $font-size: 1rem,
+  $color: hsl(0, 1%, 23%)
+) {
+  color: $color;
+  border: $border;
+  font-size: $font-size;
+  border-radius: $border-radius;
+  background-color: $bg-color;
+  padding: $padding;
+  cursor: pointer;
+}
+
+@mixin tip($width, $height, $bg-color) {
+  content: '';
+  width: $width;
+  height: $height;
+  position: absolute;
+  transform: rotate(45deg);
+  background-color: $bg-color;
+}
