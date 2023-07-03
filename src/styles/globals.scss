@@ -14,6 +14,10 @@
   @extend %text-truncate;
 }
 
+.hidden {
+  display: none !important;
+}
+
 body {
   background-color: $body-light-red;
 }
