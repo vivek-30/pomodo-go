@@ -1,5 +1,4 @@
 'use client';
-
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import styles from '@styles/components/timer.module.scss';
@@ -61,20 +60,20 @@ const Timer = () => {
       </div>
       <div className={styles['divider']}></div>
       <div className={styles['timer__controls']}>
-        <span onClick={resetTimer}>
+        <button onClick={resetTimer}>
           <Image src="/assets/icons/redo.svg" alt="clock-reset icon" height={25} width={25} />
-        </span>
-        <span onClick={handlePlayPause}>
+        </button>
+        <button onClick={handlePlayPause}>
           <Image
             width={60}
             height={60}
             src={`/assets/icons/${isPaused ? 'play' : 'pause'}.svg`}
             alt={`${isPaused ? 'play' : 'pause'} icon`}
           />
-        </span>
-        <span onClick={skipTimer}>
+        </button>
+        <button onClick={skipTimer}>
           <Image src="/assets/icons/forward.svg" alt="foward icon" height={25} width={25} />
-        </span>
+        </button>
       </div>
     </>
   );
