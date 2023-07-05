@@ -1,6 +1,19 @@
-const manageTime = ({ hours, minutes, seconds }, setTime) => {
+// import { manageStatusStates } from '@utilities/manageTimerStatus';
+
+const manageTime = (
+  { hours, minutes, seconds }, 
+  setTime, 
+  setisPaused, 
+  manageStatusStates,
+  timerSoundRef
+) => {
   return () => {
-    if(hours === 0 && minutes == 0 && seconds == 0) return;
+    if(hours === 0 && minutes === 0 && seconds === 0) {
+      setisPaused(true);
+      timerSoundRef.current?.play();
+      manageStatusStates();
+      return;
+    }
 
     if(seconds === 0) {
       if(minutes == 0) {
