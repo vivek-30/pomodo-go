@@ -30,17 +30,27 @@
 }
 
 .links__btn {
-  color: $dark-grey-text;
-  background-color: $light-pink;
-  // border: 2px solid $dark-pink;
   cursor: pointer;
   font-size: 1.08rem;
   padding: .7rem 1rem;
   border-radius: 5px;
+  color: $dark-grey-text;
 
   &:hover {
     transform: scale(.98);
   }
+}
+
+.links-container__links.focus .links__btn {
+  background-color: $light-pink;
+}
+
+.links-container__links.short-break .links__btn {
+  background-color: $light-yellow-green;
+}
+
+.links-container__links.long-break .links__btn {
+  background-color: $light-skyblue;
 }
 
 .nav__profile {
@@ -118,7 +128,18 @@
 
 .divider {
   min-width: 375px;
+}
+
+.divider.focus {
   @include divider(100%, $dark-pink);
+}
+
+.divider.short-break {
+  @include divider(100%, $dark-yellow-green);
+}
+
+.divider.long-break {
+  @include divider(100%, $dark-skyblue);
 }
 
 @include lg-screens {

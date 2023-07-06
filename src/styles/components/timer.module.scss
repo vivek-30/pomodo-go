@@ -10,9 +10,24 @@
   margin-top: 1rem;
   font-size: 1.2rem;
   padding: .6rem .8rem;
+}
+
+.timer__status.focus {
   color: $dark-red;
   background-color: $light-red;
   border: 2px solid $dark-red;
+}
+
+.timer__status.short-break {
+  color: $dark-green;
+  background-color: $light-green;
+  border: 2px solid $dark-green;
+}
+
+.timer__status.long-break {
+  color: $dark-blue;
+  background-color: $light-blue;
+  border: 2px solid $dark-blue;
 }
 
 .timer__box {
@@ -22,13 +37,10 @@
   height: 19rem;
   max-height: 20rem;
   border-radius: 50%;
-  border: .4rem solid $dark-red;
-  box-shadow: 1px 1px 4px 10px #ebd4d4;
 
   p {
     position: absolute;
     left: 50%;
-    color: $dark-red;
 
     &:nth-child(1) {
       top: 50%;
@@ -46,19 +58,58 @@
   }
 }
 
+.timer__box.focus {
+  border: .4rem solid $dark-red;
+  box-shadow: 1px 1px 4px 10px #ebd4d4;
+  
+  p {
+    color: $dark-red;
+  }
+}
+
+.timer__box.short-break {
+  border: .4rem solid $dark-green;
+  box-shadow: 1px 1px 4px 10px #d6e5d6;
+
+  p {
+    color: $dark-green;
+  }
+}
+
+.timer__box.long-break {
+  border: .4rem solid $dark-blue;
+  box-shadow: 1px 1px 4px 10px #cfdee5;
+
+  p {
+    color: $dark-blue;
+  }
+}
+
 .timer__info {
   margin: 1rem 0;
 
   span {
-    background-image: $light-red-shade-gradient;
-    // background-image: linear-gradient(to top, #f8cfcf, #fce2e2);
-    box-shadow: 1px 1px 10px 1px #c5b3b3;
     color: $dark-grey-text;
     margin: .5rem .2rem;
     padding: .4rem;
     font-size: 1.09rem;
     border-radius: 6px;
   }
+}
+
+.timer__info.focus span {
+  background-color: #fddada;
+  box-shadow: 1px 1px 10px 1px #c5b3b3;
+}
+
+.timer__info.short-break span {
+  background-color: #d6ecd6;
+  box-shadow: 1px 1px 10px 1px #b7bab7;
+}
+
+.timer__info.long-break span {
+  background-color: #cce6f6;
+  box-shadow: 1px 1px 10px 1px #adbcc5;
 }
 
 .timer__controls {
@@ -70,7 +121,6 @@
   button {
     position: relative;
     cursor: pointer;
-    background-color: #f8c2c2;
     border: none;
     border-radius: .8rem;
     width: 4.5rem;
@@ -88,15 +138,46 @@
     }
 
     &:nth-child(2) {
-      background-color: #f87b7bf0;
       width: 5.8rem;
       height: 4.2rem;
     }
   }
 }
 
-.divider {
+.timer__controls.focus button {
+  background-color: #f8c2c2;
+
+  &:nth-child(2) {
+    background-color: #f87b7bf0;
+  }
+}
+
+.timer__controls.short-break button {
+  background-color: #c0e1c0;
+
+  &:nth-child(2) {
+    background-color: #7bbc7a;
+  }
+}
+
+.timer__controls.long-break button {
+  background-color: #b0dcf7;
+
+  &:nth-child(2) {
+    background-color: #7ec3ee;
+  }
+}
+
+.divider.focus {
   @include divider(25rem, $dark-pink);
+}
+
+.divider.short-break {
+  @include divider(25rem, $dark-yellow-green);
+}
+
+.divider.long-break {
+  @include divider(25rem, $dark-skyblue);
 }
 
 @include lg-screens {

@@ -18,6 +18,14 @@
   display: none !important;
 }
 
-body {
+.body--focus {
   background-color: $body-light-red;
+}
+
+.body--short-break {
+  background-color: $body-light-green;
+}
+
+.body--long-break {
+  background-color: $body-light-blue;
 }
