@@ -1,14 +1,16 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { ModeContext } from '@contexts/modeContext';
 import styles from '@styles/components/header.module.scss';
 
 const Header = () => {
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
   const router = useRouter();
+  const { state } = useContext(ModeContext);
 
   const handleProfileNav = () => {
     setIsDropDownOpen(currentState => !currentState);
@@ -41,7 +43,7 @@ const Header = () => {
           </Link>
         </div>
         <div className={styles['nav__links-container']}>
-          <ul role="list" className={styles['links-container__links']}>
+          <ul role="list" className={`${styles['links-container__links']} ${styles[state.mode]}`}>
             <li>
               <Link href="/analytics">
                 <div data-tool-tip="Analytics" className={`${styles['links__btn']} flex-center`}>
@@ -162,7 +164,7 @@ const Header = () => {
           </ul>
         </div>
       </nav>
-      <div className={styles['divider']}></div>
+      <div className={`${styles['divider']} ${styles[state.mode]}`}></div>
     </header>
   );
 }

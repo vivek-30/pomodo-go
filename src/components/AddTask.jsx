@@ -1,6 +1,7 @@
 'use client';
-import { useState } from 'react';
 import Image from 'next/image';
+import { useState, useContext } from 'react';
+import { ModeContext } from '@contexts/modeContext';
 import styles from '@styles/components/addTask.module.scss';
 
 const AddTask = () => {
@@ -11,6 +12,8 @@ const AddTask = () => {
     description: '',
     rounds: 3
   });
+
+  const { state } = useContext(ModeContext);
 
   const openInputForm = () => {
     setIsFormOpen(true);
@@ -45,7 +48,7 @@ const AddTask = () => {
 
   return (
     <div className={`${styles['add-task__container']} flex-center`}>
-      <div className={`${styles['add-task__control-section']}`}>
+      <div className={`${styles['add-task__control-section']} ${styles[state.mode]}`}>
         <button
           className={`${styles['control-section__btn']} ${styles['btn--lg']} ${isFormOpen ? 'hidden' : ''}`}
           onClick={openInputForm}
@@ -80,11 +83,11 @@ const AddTask = () => {
         </div>
       </div>
       <div className={`${styles['add-task__progress-bar']} ${isFormOpen ? '' : 'hidden'}`}>
-        <span className={`${styles['progress-bar__circle']} ${styles['circle--active']}`}></span>
-        <span className={`${styles['progress-bar__circle']} ${inputIndex >= 2 ? styles['circle--active'] : ''}`}></span>
-        <span className={`${styles['progress-bar__circle']} ${inputIndex === 3 ? styles['circle--active'] : ''}`}></span>
+        <span className={`${styles['progress-bar__circle']} ${styles['circle--active']} ${styles[state.mode]}`}></span>
+        <span className={`${styles['progress-bar__circle']} ${inputIndex >= 2 ? styles['circle--active'] : ''} ${styles[state.mode]}`}></span>
+        <span className={`${styles['progress-bar__circle']} ${inputIndex === 3 ? styles['circle--active'] : ''} ${styles[state.mode]}`}></span>
       </div>
-      <form className={`${styles['add-task__form']} ${isFormOpen ? '' : 'hidden'}`}>
+      <form className={`${styles['add-task__form']} ${isFormOpen ? '' : 'hidden'} ${styles[state.mode]}`}>
         <div className={`${styles['form__input-field']} ${inputIndex === 1 ? 'input-field--active' : 'hidden'}`}>
           <label htmlFor="title">Create a new task:</label>
           <input

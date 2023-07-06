@@ -1,16 +1,21 @@
+'use client';
 import Image from 'next/image';
+import { useContext } from 'react';
+import { ModeContext } from '@contexts/modeContext';
 import styles from '@styles/components/tasks.module.scss';
 
 const Tasks = () => {
+  const { state } = useContext(ModeContext);
+
   return (
     <div className={styles['tasks__container']}>
-      <div className={styles['tasks__filter']}>
+      <div className={`${styles['tasks__filter']} ${styles[state.mode]}`}>
         <span>All Tasks</span>
         <span className={styles['filter--active']}>Pending</span>
         <span>Completed</span>
       </div>
-      <div className={styles['divider']}></div>
-      <div className={styles['tasks__task-list']}>
+      <div className={`${styles['divider']} ${styles[state.mode]}`}></div>
+      <div className={`${styles['tasks__task-list']} ${styles[state.mode]}`}>
         <ul role="list">
           <li>
             <div className={styles['task-list__task-header']}>
@@ -69,7 +74,7 @@ const Tasks = () => {
             <span>Read More</span></div> */}
           </li>
         </ul>
-        <div className={styles['tasks__show-more']}>
+        <div className={`${styles['tasks__show-more']} ${styles[state.mode]}`}>
           Show More...
         </div>
       </div>

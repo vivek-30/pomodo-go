@@ -92,21 +92,21 @@ const Timer = () => {
 
   return (
     <>
-      <div className={`${styles['timer__status']} flex-center`}>
+      <div className={`${styles['timer__status']} ${styles[state.mode]} flex-center`}>
         { statusInfo.image }
         <span>{ statusInfo.text }</span>
       </div>
-      <div className={styles['timer__box']}>
+      <div className={`${styles['timer__box']} ${styles[state.mode]}`}>
         <p>{currentTime}</p>
         <p className="text-truncate">Complete pomodoro app</p>
       </div>
-      <div className={styles['divider']}></div>
-      <div className={styles['timer__info']}>
+      <div className={`${styles['divider']} ${styles[state.mode]}`}></div>
+      <div className={`${styles['timer__info']} ${styles[state.mode]}`}>
         <span>Rounds: 3/4</span>
         <span>Estimated Time: 160 mins</span>
       </div>
-      <div className={styles['divider']}></div>
-      <div className={styles['timer__controls']}>
+      <div className={`${styles['divider']} ${styles[state.mode]}`}></div>
+      <div className={`${styles['timer__controls']} ${styles[state.mode]}`}>
         <button onClick={resetTimer}>
           <Image src="/assets/icons/redo.svg" alt="clock-reset icon" height={25} width={25} />
         </button>
