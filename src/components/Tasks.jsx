@@ -1,80 +1,69 @@
 'use client';
-import Image from 'next/image';
-import { useContext } from 'react';
+import { useState, useContext } from 'react';
 import { ModeContext } from '@contexts/modeContext';
+import { TasksContext } from '@contexts/tasksContext';
+import Task from '@components/Task';
 import styles from '@styles/components/tasks.module.scss';
 
 const Tasks = () => {
-  const { state } = useContext(ModeContext);
+  const { state: modeState } = useContext(ModeContext);
+  const { state: tasksState } = useContext(TasksContext);
+  const { pendingTasks, completedTasks } = tasksState;
+  const allTasks = [ ...pendingTasks, ...completedTasks ];
+  
+  const [selectedTab, setSelectedTab] = useState('all-tasks');
+  const [displayingTasks, setDisplayingTasks] = useState(allTasks);
+
+  const manageTabSection = (e) => {
+    const tab = e.target.dataset['tab'];
+    if(tab) {
+      setSelectedTab(tab);
+      setDisplayingTasks(
+        tab === 'all-tasks' ? allTasks :
+        tab === 'pending-tasks' ? pendingTasks :
+        completedTasks
+      );
+    }
+  }
 
   return (
     <div className={styles['tasks__container']}>
-      <div className={`${styles['tasks__filter']} ${styles[state.mode]}`}>
-        <span>All Tasks</span>
-        <span className={styles['filter--active']}>Pending</span>
-        <span>Completed</span>
+      <div className={`${styles['tasks__filter']} ${styles[modeState.mode]}`} onClick={manageTabSection}>
+        <span
+          data-tab="all-tasks"
+          className={selectedTab === 'all-tasks' ? styles['filter--active'] : ''}
+        >
+          All Tasks
+        </span>
+        <span
+          data-tab="pending-tasks"
+          className={selectedTab === 'pending-tasks' ? styles['filter--active'] : ''}
+        >
+          Pending
+        </span>
+        <span
+          data-tab="completed-tasks"
+          className={selectedTab === 'completed-tasks' ? styles['filter--active'] : ''}
+        >
+          Completed
+        </span>
       </div>
-      <div className={`${styles['divider']} ${styles[state.mode]}`}></div>
-      <div className={`${styles['tasks__task-list']} ${styles[state.mode]}`}>
+      <div className={`${styles['divider']} ${styles[modeState.mode]}`}></div>
+      <div className={`${styles['tasks__task-list']} ${styles[modeState.mode]}`}>
         <ul role="list">
-          <li>
-            <div className={styles['task-list__task-header']}>
-              <span className="text-truncate">Complete pomodoro Project</span>
-              <div className={styles['task-header__control-icons']}>
-                <span>3/4</span>
-                <span><Image src="/assets/icons/edit.svg" alt="edit icon" height={20} width={20} /></span>
-                <span><Image src="/assets/icons/delete.svg" alt="delete icon" height={20} width={20} /></span>
-                <span><Image src="/assets/icons/description.svg" alt="description icon" height={20} width={20} /></span>
-              </div>
-            </div>
-            <div className={styles['task-list__task-body']}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat molestiae dolorem nesciunt tempora consequatur similique aspernatur nostrum officiis consectetur sunt ullam assumenda, iste laudantium aut aperiam omnis cupiditate earum odit ex molestias facere nam? Recusandae nostrum, cumque vero excepturi.
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam quas voluptatem ullam consequatur atque sit debitis, quia nihil eveniet sint, eius quis iste neque error, esse reiciendis animi expedita ipsam.
-            <span>Read More</span></div>
-          </li>
-          <li>
-            <div className={styles['task-list__task-header']}>
-              <span className="text-truncate">Complete pomodoro Project</span>
-              <div className={styles['task-header__control-icons']}>
-                <span>3/4</span>
-                <span><Image src="/assets/icons/edit.svg" alt="edit icon" height={20} width={20} /></span>
-                <span><Image src="/assets/icons/delete.svg" alt="delete icon" height={20} width={20} /></span>
-                <span><Image src="/assets/icons/description.svg" alt="description icon" height={20} width={20} /></span>
-              </div>
-            </div>
-            {/* <div className={styles['task-list__task-body']}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat molestiae dolorem nesciunt tempora consequatur similique aspernatur nostrum officiis consectetur sunt ullam assumenda, iste laudantium aut aperiam omnis cupiditate earum odit ex molestias facere nam? Recusandae nostrum, cumque vero excepturi.
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam quas voluptatem ullam consequatur atque sit debitis, quia nihil eveniet sint, eius quis iste neque error, esse reiciendis animi expedita ipsam.
-            <span>Read More</span></div> */}
-          </li>
-          <li>
-            <div className={styles['task-list__task-header']}>
-              <span className="text-truncate">Complete pomodoro Project</span>
-              <div className={styles['task-header__control-icons']}>
-                <span>3/4</span>
-                <span><Image src="/assets/icons/edit.svg" alt="edit icon" height={20} width={20} /></span>
-                <span><Image src="/assets/icons/delete.svg" alt="delete icon" height={20} width={20} /></span>
-                <span><Image src="/assets/icons/description.svg" alt="description icon" height={20} width={20} /></span>
-              </div>
-            </div>
-            {/* <div className={styles['task-list__task-body']}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat molestiae dolorem nesciunt tempora consequatur similique aspernatur nostrum officiis consectetur sunt ullam assumenda, iste laudantium aut aperiam omnis cupiditate earum odit ex molestias facere nam? Recusandae nostrum, cumque vero excepturi.
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam quas voluptatem ullam consequatur atque sit debitis, quia nihil eveniet sint, eius quis iste neque error, esse reiciendis animi expedita ipsam.
-            <span>Read More</span></div> */}
-          </li>
-          <li>
-            <div className={styles['task-list__task-header']}>
-              <span className="text-truncate">Complete pomodoro Project</span>
-              <div className={styles['task-header__control-icons']}>
-                <span>3/4</span>
-                <span><Image src="/assets/icons/edit.svg" alt="edit icon" height={20} width={20} /></span>
-                <span><Image src="/assets/icons/delete.svg" alt="delete icon" height={20} width={20} /></span>
-                <span><Image src="/assets/icons/description.svg" alt="description icon" height={20} width={20} /></span>
-              </div>
-            </div>
-            {/* <div className={styles['task-list__task-body']}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat molestiae dolorem nesciunt tempora consequatur similique aspernatur nostrum officiis consectetur sunt ullam assumenda, iste laudantium aut aperiam omnis cupiditate earum odit ex molestias facere nam? Recusandae nostrum, cumque vero excepturi.
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam quas voluptatem ullam consequatur atque sit debitis, quia nihil eveniet sint, eius quis iste neque error, esse reiciendis animi expedita ipsam.
-            <span>Read More</span></div> */}
-          </li>
+          {
+            displayingTasks.length > 0 ? displayingTasks.map((task) => (
+              <Task task={task} key={task._id} />
+            )) : <p className={styles['task-list--empty']}>
+              {
+                selectedTab.includes('all') ? `You don't have any task, create a new one instead.`
+                : selectedTab.includes('pending') ? `Great!!! No more pending work to do.`
+                : `Either you don't have any task or none of them are completed.`
+              }
+            </p>
+          }
         </ul>
-        <div className={`${styles['tasks__show-more']} ${styles[state.mode]}`}>
+        <div className={`${styles['tasks__show-more']} ${styles[modeState.mode]} ${displayingTasks.length ? '' : 'hidden'}`}>
           Show More...
         </div>
       </div>

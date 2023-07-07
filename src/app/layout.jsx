@@ -1,5 +1,5 @@
 import App from '@components/App';
-import ContextProvider from '@contexts/provider';
+import ContextProvider from '@contexts/contextProvider';
 
 export const metadata = {
   charset: 'utf-8',
