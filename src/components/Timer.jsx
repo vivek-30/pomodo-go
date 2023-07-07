@@ -30,18 +30,20 @@ const longBreak = {
 const Timer = () => {
   const [time, setTime] = useState(focusTime);
   const [isPaused, setIsPaused] = useState(true);
+  const [isBgMusicPaused, setIsBgMusicPaused] = useState(true);
   const [completedTaskCount, setCompletedTaskCount] = useState(0);
   
   const clickSoundRef = useRef(null);
   const timerSoundRef = useRef(null);
   const tickingSoundRef = useRef(null);
+  const backgroundMusicRef = useRef(null);
 
   const { state: modeState, dispatch: modeDispatch } = useContext(ModeContext);
   const { state: tasksState, dispatch: tasksDispatch } = useContext(TasksContext);
 
   useEffect(() => {
     if(isPaused) return;
-    const activateTimer = manageTime(time, setTime, tickingSoundRef, handleEndTimer);
+    const activateTimer = manageTime(time, setTime, tickingSoundRef, backgroundMusicRef, handleEndTimer);
     const timerID = setInterval(activateTimer, 1000);
 
     return () => clearInterval(timerID);
@@ -74,6 +76,9 @@ const Timer = () => {
     tickingSoundRef.current?.pause();
     timerSoundRef.current?.play();
     manageStatusStates();
+    setTimeout(() => {
+      backgroundMusicRef.current?.play();
+    }, 500);
   }
 
   const resetTimer = () => {
@@ -103,11 +108,21 @@ const Timer = () => {
     manageStatusStates();
   }
 
+  const playBgMusic = () => {
+    setIsBgMusicPaused(musicState => !musicState);
+    if(!isBgMusicPaused && timerSoundRef.current?.paused && tickingSoundRef.current?.paused) {
+      backgroundMusicRef.current?.play();
+    }
+    else if(isBgMusicPaused) {
+      backgroundMusicRef.current?.pause();
+    }
+  }
+
   return (
     <>
       <div className={`${styles['timer__status']} ${styles[modeState.mode]} flex-center`}>
-        { statusInfo.image }
-        <span>{ statusInfo.text }</span>
+        {statusInfo.image}
+        <span>{statusInfo.text}</span>
       </div>
       <div className={`${styles['timer__box']} ${styles[modeState.mode]}`}>
         <p>{currentTime}</p>
@@ -134,9 +149,15 @@ const Timer = () => {
         <button onClick={skipTimer}>
           <Image src="/assets/icons/forward.svg" alt="foward icon" height={25} width={25} />
         </button>
-        <audio ref={clickSoundRef} src="/assets/audios/click.wav" />
-        <audio ref={timerSoundRef} src="/assets/audios/timer.mp3" />
-        <audio ref={tickingSoundRef} src="/assets/audios/ticking.mp3" />
+        <div className="audios hidden">
+          <audio ref={clickSoundRef} src="/assets/audios/click.mp3" />
+          <audio ref={timerSoundRef} src="/assets/audios/timer.mp3" />
+          <audio ref={tickingSoundRef} src="/assets/audios/ticking.mp3" />
+          <audio ref={backgroundMusicRef} src="/assets/audios/BgMusic.mp3" />
+        </div>
+      </div>
+      <div className={styles['music__container']}>
+        <Image src="/assets/icons/headphone.svg" alt="headphone icon" height={80} width={80} onClick={playBgMusic} />
       </div>
     </>
   );

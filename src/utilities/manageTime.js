@@ -1,6 +1,12 @@
 // import { manageStatusStates } from '@utilities/manageTimerStatus';
 
-const manageTime = ({ hours, minutes, seconds }, setTime, tickingSoundRef, handleEndTimer) => {
+const manageTime = (
+  { hours, minutes, seconds }, 
+  setTime, 
+  tickingSoundRef, 
+  backgroundMusicRef, 
+  handleEndTimer
+) => {
   return () => {
 
     if(hours === 0 && minutes === 0) {
@@ -9,6 +15,7 @@ const manageTime = ({ hours, minutes, seconds }, setTime, tickingSoundRef, handl
         return;
       }
       else if(seconds <= 10) {
+        backgroundMusicRef.current?.pause();
         if(tickingSoundRef.current?.paused) {
           tickingSoundRef.current?.play();
         }

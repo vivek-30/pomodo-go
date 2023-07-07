@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Tasks from '@components/Tasks';
 import Timer from '@components/Timer';
 import AddTask from '@components/AddTask';
@@ -14,9 +13,6 @@ const Page = () => {
         <AddTask />
         <Tasks />
       </section>
-      <div className={styles['music__container']}>
-        <Image src="/assets/icons/music.svg" alt="headphone icon" height={80} width={80} />
-      </div>
     </main>
   );
 }

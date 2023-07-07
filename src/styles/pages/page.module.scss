@@ -6,15 +6,3 @@
 .timer__section {
   flex-direction: column;
 }
-
-.music__container {
-  position: fixed;
-  max-width: 9rem;
-  height: 5rem;
-  border-radius: 50%;
-  // background-color: $light-red;
-  left: 3%;
-  bottom: 7%;
-  cursor: pointer;
-  z-index: 10;
-}

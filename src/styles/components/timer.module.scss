@@ -180,6 +180,21 @@
   @include divider(25rem, $dark-skyblue);
 }
 
+.music__container {
+  position: fixed;
+  max-width: 9rem;
+  height: 5rem;
+  border-radius: 50%;
+  // background-color: $light-red;
+  left: 3%;
+  bottom: 7%;
+  z-index: 10;
+
+  img {
+    cursor: pointer;
+  }
+}
+
 @include lg-screens {
   .timer__box {
     width: 17rem;
@@ -201,6 +216,10 @@
   }
 
   .divider {
-    width: 21rem;
+    width: 21rem !important;
+  }
+
+  .music__container {
+    display: none;
   }
 }
