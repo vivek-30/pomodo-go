@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import { useState, useEffect, useRef, useContext } from 'react';
 import { ModeContext } from '@contexts/modeContext';
+import { TasksContext } from '@contexts/tasksContext';
 import styles from '@styles/components/timer.module.scss';
 
 import manageTime from '@/utilities/manageTime';
@@ -33,12 +34,15 @@ const Timer = () => {
   
   const clickSoundRef = useRef(null);
   const timerSoundRef = useRef(null);
-  const { state, dispatch } = useContext(ModeContext);
-  
+  const tickingSoundRef = useRef(null);
+
+  const { state: modeState, dispatch: modeDispatch } = useContext(ModeContext);
+  const { state: tasksState, dispatch: tasksDispatch } = useContext(TasksContext);
+
   useEffect(() => {
     if(isPaused) return;
     const activateTimer = manageTime(
-      time, setTime, setIsPaused, manageStatusStates, timerSoundRef
+      time, setTime, setIsPaused, timerSoundRef, tickingSoundRef, manageStatusStates
     );
     const timerID = setInterval(activateTimer, 1000);
 
@@ -49,30 +53,30 @@ const Timer = () => {
   const statusInfo = manageStatusInfo();
 
   const manageStatusStates = () => {
-    if(state.mode === 'focus') {
+    if(modeState.mode === 'focus') {
       setCompletedTaskCount((currentCount) => {
         if(currentCount === 2) {
-          dispatch({ type: 'SET_MODE', payload: 'long-break' });
+          modeDispatch({ type: 'SET_MODE', payload: 'long-break' });
           setTime(longBreak);
         } else {
-          dispatch({ type: 'SET_MODE', payload: 'short-break' });
+          modeDispatch({ type: 'SET_MODE', payload: 'short-break' });
           setTime(shortBreak);
         }
         return (currentCount + 1) % 3;
       });
     }
     else {
-      dispatch({ type: 'SET_DEFAULT' });
+      modeDispatch({ type: 'SET_DEFAULT' });
       setTime(focusTime);
     }
   }
 
   const resetTimer = () => {
     setIsPaused(true);
-    if(state.mode === 'focus') {
+    if(modeState.mode === 'focus') {
       setTime(focusTime);
     }
-    else if(state.mode === 'short-break') {
+    else if(modeState.mode === 'short-break') {
       setTime(shortBreak);
     }
     else {
@@ -92,21 +96,21 @@ const Timer = () => {
 
   return (
     <>
-      <div className={`${styles['timer__status']} ${styles[state.mode]} flex-center`}>
+      <div className={`${styles['timer__status']} ${styles[modeState.mode]} flex-center`}>
         { statusInfo.image }
         <span>{ statusInfo.text }</span>
       </div>
-      <div className={`${styles['timer__box']} ${styles[state.mode]}`}>
+      <div className={`${styles['timer__box']} ${styles[modeState.mode]}`}>
         <p>{currentTime}</p>
         <p className="text-truncate">Complete pomodoro app</p>
       </div>
-      <div className={`${styles['divider']} ${styles[state.mode]}`}></div>
-      <div className={`${styles['timer__info']} ${styles[state.mode]}`}>
+      <div className={`${styles['divider']} ${styles[modeState.mode]}`}></div>
+      <div className={`${styles['timer__info']} ${styles[modeState.mode]}`}>
         <span>Rounds: 3/4</span>
         <span>Estimated Time: 160 mins</span>
       </div>
-      <div className={`${styles['divider']} ${styles[state.mode]}`}></div>
-      <div className={`${styles['timer__controls']} ${styles[state.mode]}`}>
+      <div className={`${styles['divider']} ${styles[modeState.mode]}`}></div>
+      <div className={`${styles['timer__controls']} ${styles[modeState.mode]}`}>
         <button onClick={resetTimer}>
           <Image src="/assets/icons/redo.svg" alt="clock-reset icon" height={25} width={25} />
         </button>
@@ -123,6 +127,7 @@ const Timer = () => {
         </button>
         <audio ref={clickSoundRef} src="/assets/audios/click.wav" />
         <audio ref={timerSoundRef} src="/assets/audios/timer.mp3" />
+        <audio ref={tickingSoundRef} src="/assets/audios/ticking.mp3" />
       </div>
     </>
   );
