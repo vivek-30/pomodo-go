@@ -15,7 +15,7 @@ const manageStatusInfo = () => {
   }
   else if(state.mode === 'short-break') {
     statusInfo.text = 'Short Break';
-    statusInfo.image = <Image src="/assets/icons/coffee.svg" alt="coffee-cup icon" width={35} height={35} />;
+    statusInfo.image = <Image src="/assets/icons/coffee-break.svg" alt="coffee-break icon" width={35} height={35} />;
   }
   else {
     statusInfo.text = 'Long Break';

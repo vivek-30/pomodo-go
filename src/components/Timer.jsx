@@ -41,9 +41,7 @@ const Timer = () => {
 
   useEffect(() => {
     if(isPaused) return;
-    const activateTimer = manageTime(
-      time, setTime, setIsPaused, timerSoundRef, tickingSoundRef, manageStatusStates
-    );
+    const activateTimer = manageTime(time, setTime, tickingSoundRef, handleEndTimer);
     const timerID = setInterval(activateTimer, 1000);
 
     return () => clearInterval(timerID);
@@ -71,6 +69,13 @@ const Timer = () => {
     }
   }
 
+  const handleEndTimer = () => {
+    setIsPaused(true);
+    tickingSoundRef.current?.pause();
+    timerSoundRef.current?.play();
+    manageStatusStates();
+  }
+
   const resetTimer = () => {
     setIsPaused(true);
     if(modeState.mode === 'focus') {
@@ -87,10 +92,14 @@ const Timer = () => {
   const handlePlayPause = () => {
     clickSoundRef.current?.play();
     setIsPaused(timerState => !timerState);
+    if(!tickingSoundRef.current?.paused) {
+      tickingSoundRef.current?.pause();
+    }
   }
 
   const skipTimer = () => {
     setIsPaused(true);
+    timerSoundRef.current?.play();
     manageStatusStates();
   }
 
