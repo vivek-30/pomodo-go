@@ -1,5 +1,5 @@
 'use client';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { ModeContext } from '@contexts/modeContext';
 import { TasksContext } from '@contexts/tasksContext';
 import Task from '@components/Task';
@@ -8,20 +8,30 @@ import styles from '@styles/components/tasks.module.scss';
 const Tasks = () => {
   const { state: modeState } = useContext(ModeContext);
   const { state: tasksState } = useContext(TasksContext);
-  const { pendingTasks, completedTasks } = tasksState;
-  const allTasks = [ ...pendingTasks, ...completedTasks ];
   
+  const [pendingTasks, setPendingTasks] = useState([]);
+  const [completedTasks, setCompletedTasks] = useState([]);
+  const [displayingTasks, setDisplayingTasks] = useState([]);
   const [selectedTab, setSelectedTab] = useState('all-tasks');
-  const [displayingTasks, setDisplayingTasks] = useState(allTasks);
+
+  useEffect(() => {
+    setPendingTasks(tasksState.pendingTasks);
+    setCompletedTasks(tasksState.completedTasks);
+    setDisplayingTasks(
+      selectedTab === 'pending-tasks' ? tasksState.pendingTasks :
+      selectedTab === 'completed-tasks' ? tasksState.completedTasks :
+      [...tasksState.pendingTasks, ...tasksState.completedTasks]
+    );
+  }, [tasksState]);
 
   const manageTabSection = (e) => {
     const tab = e.target.dataset['tab'];
     if(tab) {
       setSelectedTab(tab);
       setDisplayingTasks(
-        tab === 'all-tasks' ? allTasks :
         tab === 'pending-tasks' ? pendingTasks :
-        completedTasks
+        tab === 'completed-tasks' ? completedTasks :
+        [...pendingTasks, ...completedTasks]
       );
     }
   }
@@ -52,20 +62,24 @@ const Tasks = () => {
       <div className={`${styles['tasks__task-list']} ${styles[modeState.mode]}`}>
         <ul role="list">
           {
-            displayingTasks.length > 0 ? displayingTasks.map((task) => (
-              <Task task={task} key={task._id} />
-            )) : <p className={styles['task-list--empty']}>
-              {
-                selectedTab.includes('all') ? `You don't have any task, create a new one instead.`
-                : selectedTab.includes('pending') ? `Great!!! No more pending work to do.`
-                : `Either you don't have any task or none of them are completed.`
-              }
-            </p>
+            displayingTasks.length !== 0 ? (
+              displayingTasks.map((task) => (<Task key={task._id} task={task} />))
+            ) : (
+              <p className={styles['task-list--empty']}>
+                {
+                  selectedTab.includes('all') ? `You don't have any task, create a new one instead.` :
+                  selectedTab.includes('pending') ? `Great!!! No more pending work to do.` :
+                  `Either you don't have any task or none of them are completed.`
+                }
+              </p>
+            )
           }
         </ul>
-        <div className={`${styles['tasks__show-more']} ${styles[modeState.mode]} ${displayingTasks.length ? '' : 'hidden'}`}>
-          Show More...
-        </div>
+        {displayingTasks.length !== 0 && (
+          <div className={`${styles['tasks__show-more']} ${styles[modeState.mode]}`}>
+            Show More...
+          </div>
+        )}
       </div>
     </div>
   );

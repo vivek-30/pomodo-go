@@ -1,5 +1,5 @@
 import { createContext, useReducer } from 'react';
-import modeReducer from '../reducers/modeReducer';
+import modeReducer from '@reducers/modeReducer';
 
 export const ModeContext = createContext('focus');
 const initialMode = {

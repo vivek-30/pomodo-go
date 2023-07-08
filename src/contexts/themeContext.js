@@ -1,5 +1,5 @@
 import { createContext, useReducer } from 'react';
-import themeReducer from '../reducers/themeReducer';
+import themeReducer from '@reducers/themeReducer';
 
 export const ThemeContext = createContext('light');
 const initialTheme = {

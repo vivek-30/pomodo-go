@@ -1,8 +1,7 @@
 import { createContext, useReducer } from 'react';
-import modeReducer from '../reducers/modeReducer';
+import tasksReducer from '@reducers/tasksReducer';
 
-export const TasksContext = createContext('focus');
-const initialMode = {
+const initialState = {
   pendingTasks: [
     {
       _id: 1,
@@ -37,8 +36,10 @@ const initialMode = {
   completedTasks: [],
   activeTask: null
 }
+
+export const TasksContext = createContext(null);
 const TasksContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(modeReducer, initialMode);
+  const [state, dispatch] = useReducer(tasksReducer, initialState);
 
   return (
     <TasksContext.Provider value={{ state, dispatch }}>

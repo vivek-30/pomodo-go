@@ -148,7 +148,7 @@
   }
 
   input[type="number"] {
-    width: 37%;
+    width: 48%;
   }
 }
 
@@ -179,5 +179,22 @@
   
   input, textarea {
     outline: 2px solid $dark-blue;
+  }
+}
+
+.save-task__btn {
+  width: 48%;
+  cursor: pointer;
+  border-radius: 8px;
+  margin-left: 0.9rem;
+  color: $dark-green;
+  font-size: 1.3rem;
+  padding: 0.6rem 1rem;
+  background-color: $light-green;
+  border: 2px solid $dark-green;
+
+  &:hover {
+    color: $dark-grey-text;
+    background-color: hsl(133.66deg 35.75% 67.89%);
   }
 }
