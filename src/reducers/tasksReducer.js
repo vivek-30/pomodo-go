@@ -33,21 +33,27 @@ const tasksReducer = (state, action) => {
     }
     case 'MARK_COMPLETED': {
       return {
-        pendingTasks: state.pendingTasks.filter((task) => task._id !== payload.task._id),
+        pendingTasks: state.pendingTasks.filter((task) => task._id !== action.payload._id),
         completedTasks: [ action.payload, ...state.completedTasks ],
-        activeTask: state.activeTask
+        activeTask: null
       }
     }
     case 'REMOVE_PENDING_TASK': {
       return {
         ...state,
-        pendingTasks: state.pendingTasks.filter((task) => task._id !== payload.task._id),
+        pendingTasks: state.pendingTasks.filter((task) => task._id !== action.payload._id),
       }
     }
     case 'REMOVE_COMPLETED_TASK': {
       return {
         ...state,
-        completedTasks: state.completedTasks.filter((task) => task._id !== payload.task._id),
+        completedTasks: state.completedTasks.filter((task) => task._id !== action.payload._id),
+      }
+    }
+    case 'TOGGLE_IS_PAUSED': {
+      return {
+        ...state,
+        isPaused: action.payload
       }
     }
     default: {

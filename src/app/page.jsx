@@ -1,4 +1,3 @@
-import Tasks from '@components/Tasks';
 import Timer from '@components/Timer';
 import AddTask from '@components/AddTask';
 import styles from '@styles/pages/page.module.scss';
@@ -11,7 +10,6 @@ const Page = () => {
       </section>
       <section className='tasks__section'>
         <AddTask />
-        <Tasks />
       </section>
     </main>
   );

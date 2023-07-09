@@ -1,11 +1,11 @@
 'use client';
+import Task from '@components/Task';
 import { useState, useContext, useEffect } from 'react';
 import { ModeContext } from '@contexts/modeContext';
 import { TasksContext } from '@contexts/tasksContext';
-import Task from '@components/Task';
 import styles from '@styles/components/tasks.module.scss';
 
-const Tasks = () => {
+const Tasks = ({ editTask }) => {
   const { state: modeState } = useContext(ModeContext);
   const { state: tasksState } = useContext(TasksContext);
   
@@ -63,7 +63,7 @@ const Tasks = () => {
         <ul role="list">
           {
             displayingTasks.length !== 0 ? (
-              displayingTasks.map((task) => (<Task key={task._id} task={task} />))
+              displayingTasks.map((task) => (<Task key={task._id} task={task} editTask={editTask} />))
             ) : (
               <p className={styles['task-list--empty']}>
                 {
