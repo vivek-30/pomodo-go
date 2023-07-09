@@ -95,6 +95,10 @@
     font-size: 1.09rem;
     border-radius: 6px;
   }
+
+  p {
+    font-size: 1.3rem;
+  }
 }
 
 .timer__info.focus span {
@@ -110,6 +114,18 @@
 .timer__info.long-break span {
   background-color: #cce6f6;
   box-shadow: 1px 1px 10px 1px #adbcc5;
+}
+
+.timer__info.focus p {
+  color: $dark-red;
+}
+
+.timer__info.short-break p {
+  color: $dark-green;
+}
+
+.timer__info.long-break p {
+  color: $dark-blue;
 }
 
 .timer__controls {

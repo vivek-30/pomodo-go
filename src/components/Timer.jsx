@@ -8,11 +8,12 @@ import styles from '@styles/components/timer.module.scss';
 import manageTime from '@/utilities/manageTime';
 import formatTime from '@utilities/formatTime';
 import manageStatusInfo from '@utilities/manageStatusInfo';
+import calculateEstimatedTime from '@utilities/calculateEstimatedTime';
 
 const focusTime = {
-  hours: 0,
-  minutes: 1,
-  seconds: 9
+  hours: 3,
+  minutes: 19,
+  seconds: 58
 }
 
 const shortBreak = {
@@ -27,9 +28,18 @@ const longBreak = {
   seconds: 0
 }
 
+const defaultTaskData = {
+  title: '',
+  totalRounds: 0,
+  completedRounds: 0
+}
 const Timer = () => {
   const [time, setTime] = useState(focusTime);
   const [isPaused, setIsPaused] = useState(true);
+  const [taskData, setTaskData] = useState(defaultTaskData);
+  const [estimatedTime, setEstimatedTime] = useState(
+    calculateEstimatedTime(time, focusTime, taskData)
+  );
   const [isBgMusicPaused, setIsBgMusicPaused] = useState(true);
   const [completedTaskCount, setCompletedTaskCount] = useState(0);
   
@@ -49,8 +59,28 @@ const Timer = () => {
     return () => clearInterval(timerID);
   }, [time, isPaused]);
 
-  const currentTime = formatTime(time);
-  const statusInfo = manageStatusInfo();
+  useEffect(() => {
+    if(isPaused) return;
+
+    const intervalID = setTimeout(() => {
+      const computedTime = calculateEstimatedTime(time, focusTime, taskData);
+      setEstimatedTime(computedTime);
+    }, 60000); // After every 1 minute
+  
+    return () => clearTimeout(intervalID);
+  }, [isPaused, estimatedTime]);
+
+  useEffect(() => {
+    if(tasksState.activeTask) {
+      setTaskData(tasksState.activeTask);
+      const computedTime = calculateEstimatedTime(time, focusTime, taskData);
+      setEstimatedTime(computedTime);
+    }
+    else {
+      setTaskData(defaultTaskData);
+      setEstimatedTime(0);
+    }
+  }, [tasksState]);
 
   const manageStatusStates = () => {
     if(modeState.mode === 'focus') {
@@ -73,6 +103,7 @@ const Timer = () => {
 
   const handleEndTimer = () => {
     setIsPaused(true);
+    tasksDispatch({ type: 'TOGGLE_IS_PAUSED', payload: true });
     tickingSoundRef.current?.pause();
     timerSoundRef.current?.play();
     manageStatusStates();
@@ -97,6 +128,7 @@ const Timer = () => {
   const handlePlayPause = () => {
     clickSoundRef.current?.play();
     setIsPaused(timerState => !timerState);
+    tasksDispatch({ type: 'TOGGLE_IS_PAUSED', payload: !isPaused });
     if(!tickingSoundRef.current?.paused) {
       tickingSoundRef.current?.pause();
     }
@@ -104,6 +136,7 @@ const Timer = () => {
 
   const skipTimer = () => {
     setIsPaused(true);
+    tasksDispatch({ type: 'TOGGLE_IS_PAUSED', payload: true });
     timerSoundRef.current?.play();
     manageStatusStates();
   }
@@ -118,6 +151,9 @@ const Timer = () => {
     }
   }
 
+  const currentFormatedTime = formatTime(time);
+  const statusInfo = manageStatusInfo();
+
   return (
     <>
       <div className={`${styles['timer__status']} ${styles[modeState.mode]} flex-center`}>
@@ -125,13 +161,21 @@ const Timer = () => {
         <span>{statusInfo.text}</span>
       </div>
       <div className={`${styles['timer__box']} ${styles[modeState.mode]}`}>
-        <p>{currentTime}</p>
-        <p className="text-truncate">Complete pomodoro app</p>
+        <p>{currentFormatedTime}</p>
+        {taskData.title !== '' && <p className="text-truncate">{taskData.title}</p>}
       </div>
       <div className={`${styles['divider']} ${styles[modeState.mode]}`}></div>
       <div className={`${styles['timer__info']} ${styles[modeState.mode]}`}>
-        <span>Rounds: 3/4</span>
-        <span>Estimated Time: 160 mins</span>
+        {
+          taskData.totalRounds !== 0 ? (
+            <>
+              <span>Rounds: {taskData.completedRounds}/{taskData.totalRounds}</span>
+              <span>Estimated Time: {estimatedTime} mins</span>
+            </>
+          ) : (
+            <p>No Task Selected</p>
+          )
+        }
       </div>
       <div className={`${styles['divider']} ${styles[modeState.mode]}`}></div>
       <div className={`${styles['timer__controls']} ${styles[modeState.mode]}`}>
