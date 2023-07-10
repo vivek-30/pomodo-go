@@ -9,7 +9,7 @@ import styles from '@styles/components/addTask.module.scss';
 const initialTaskData = {
   title: '',
   description: '',
-  totalRounds: ''
+  totalRounds: 3
 }
 const AddTask = () => {
   const [inputIndex, setInputIndex] = useState(1);
@@ -45,10 +45,6 @@ const AddTask = () => {
 
   const handleInputChange = (e) => {
     let { id: field, value } = e.target;
-    if(field === 'totalRounds') {
-      value = parseInt(value);
-      if(isNaN(value)) return;
-    }
     setTaskData(currentData => ({ ...currentData, [field]: value }));
   }
 
@@ -165,10 +161,9 @@ const AddTask = () => {
               <label htmlFor="rounds">Number of rounds you want to go for:</label>
               <input
                 id="totalRounds"
-                type="text"
+                type="number"
                 inputMode="numeric"
                 placeholder="Default (3)"
-                value={taskData.totalRounds}
                 onChange={handleInputChange}
                 min={1}
               />
