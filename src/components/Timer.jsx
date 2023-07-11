@@ -162,7 +162,13 @@ const Timer = () => {
       </div>
       <div className={`${styles['timer__box']} ${styles[modeState.mode]}`}>
         <p>{currentFormatedTime}</p>
-        {taskData.title !== '' && <p className="text-truncate">{taskData.title}</p>}
+        <p className="text-truncate">
+          {
+            taskData.title === '' ? 
+            modeState.mode === 'focus' ? 'Time to pick some task' : 'Restore your energy for next task' : 
+            taskData.title
+          }
+        </p>
       </div>
       <div className={`${styles['divider']} ${styles[modeState.mode]}`}></div>
       <div className={`${styles['timer__info']} ${styles[modeState.mode]}`}>
