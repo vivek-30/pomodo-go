@@ -15,6 +15,7 @@ const AddTask = () => {
   const [inputIndex, setInputIndex] = useState(1);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [taskData, setTaskData] = useState(initialTaskData);
+  const [modifyingTask, setModifyingTask] = useState(null);
 
   const { state: modeState } = useContext(ModeContext);
   const { dispatch: tasksDispatch } = useContext(TasksContext);
@@ -28,6 +29,10 @@ const AddTask = () => {
   }
 
   const closeInputForm = () => {
+    if(taskData.title === '' && taskData.description === '' && taskData.totalRounds === 3) {
+      setIsFormOpen(false);
+      return;
+    }
     const decision = confirm('Are you sure? It will clear all the entered information');
     if(decision) {
       setIsFormOpen(false);
@@ -49,10 +54,24 @@ const AddTask = () => {
   }
 
   const addNewTask = () => {
-    taskData._id = Math.random()*100000;
-    taskData.completedRounds = 0;
-    taskData.status = 'pending'
-    tasksDispatch({ type: 'ADD_TASK', payload: taskData });
+    if(modifyingTask !== null) {
+      const updatingData = modifyingTask;
+      updatingData.title = taskData.title;
+      updatingData.description = taskData.description;
+      updatingData.totalRounds = taskData.totalRounds;
+      tasksDispatch({
+        type: `MODIFY_${modifyingTask.status.toUpperCase()}_TASK`,
+        payload: modifyingTask
+      });
+      setModifyingTask(null);
+    }
+    else {
+      const savingData = taskData;
+      savingData._id = Math.random()*100000;
+      savingData.status = 'pending'
+      savingData.completedRounds = 0;
+      tasksDispatch({ type: 'ADD_TASK', payload: savingData });
+    }
     setTaskData(initialTaskData);
     setInputIndex(1);
   }
@@ -73,16 +92,21 @@ const AddTask = () => {
   const editTask = (selectedTask) => {
     return () => {
       // Check if user is trying both modification as well as saving a task.
-      if(isFormOpen && (taskData.title !== '' || taskData.description !== '' || taskData.totalRounds !== '')) {
+      if(isFormOpen && (taskData.title !== '' || taskData.description !== '' || taskData.totalRounds !== 3)) {
         const decision = confirm('You have a unsaved task, this action will erase all your changes, click "ok" to continue');
         if(!decision) {
           return;
         }
       }
 
-      setIsFormOpen(true);
-      setTaskData(selectedTask);
+      setTaskData({
+        title: selectedTask.title,
+        description: selectedTask.description,
+        totalRounds: selectedTask.totalRounds,
+      });
       setInputIndex(1);
+      setIsFormOpen(true);
+      setModifyingTask(selectedTask);
     }
   }
 

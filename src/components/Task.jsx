@@ -36,7 +36,7 @@ const Task = ({ task, editTask }) => {
           <span data-type="info">
             {completedRounds}/{totalRounds}
           </span>
-          <span onClick={editTask({ title, description, totalRounds})} data-type="edit">
+          <span onClick={editTask(task)} data-type="edit">
             <Image src="/assets/icons/edit.svg" alt="edit icon" height={20} width={20} />
           </span>
           <span onClick={deleteTask} data-type="delete">
