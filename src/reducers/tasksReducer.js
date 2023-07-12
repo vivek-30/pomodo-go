@@ -72,10 +72,10 @@ const tasksReducer = (state, action) => {
         completedTasks: state.completedTasks.filter((task) => task._id !== action.payload._id),
       }
     }
-    case 'TOGGLE_IS_PAUSED': {
+    case 'SET_IS_PROGRESSED': {
       return {
         ...state,
-        isPaused: action.payload
+        isProgressed: action.payload
       }
     }
     default: {

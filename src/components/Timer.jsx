@@ -43,15 +43,15 @@ const Timer = () => {
   const [isBgMusicPaused, setIsBgMusicPaused] = useState(true);
   const [completedTaskCount, setCompletedTaskCount] = useState(0);
   
-  const soundRef = useRef({});
-
   const { state: modeState, dispatch: modeDispatch } = useContext(ModeContext);
   const { state: tasksState, dispatch: tasksDispatch } = useContext(TasksContext);
+  
+  const soundRef = useRef({});
 
   useEffect(() => {
     if(isPaused) return;
-    const activateTimer = manageTime(time, setTime, soundRef, handleEndTimer);
-    const timerID = setInterval(activateTimer, 1000);
+    const activatedTimer = manageTime(time, setTime, soundRef, handleEndTimer);
+    const timerID = setInterval(activatedTimer, 1000);
 
     return () => clearInterval(timerID);
   }, [time, isPaused]);
@@ -100,7 +100,10 @@ const Timer = () => {
 
   const handleEndTimer = () => {
     setIsPaused(true);
-    tasksDispatch({ type: 'TOGGLE_IS_PAUSED', payload: true });
+    tasksDispatch({ type: 'SET_TASK', payload: null });
+    if(modeState.mode === 'focus') {
+      tasksDispatch({ type: 'SET_IS_PROGRESSED', payload: false });
+    }
     soundRef.current?.tickingSound.pause();
     soundRef.current?.timerSound.play();
     manageStatusStates();
@@ -113,6 +116,7 @@ const Timer = () => {
     setIsPaused(true);
     if(modeState.mode === 'focus') {
       setTime(focusTime);
+      tasksDispatch({ type: 'SET_IS_PROGRESSED', payload: false });
     }
     else if(modeState.mode === 'short-break') {
       setTime(shortBreak);
@@ -125,15 +129,20 @@ const Timer = () => {
   const handlePlayPause = () => {
     soundRef.current?.clickSound.play();
     setIsPaused(timerState => !timerState);
-    tasksDispatch({ type: 'TOGGLE_IS_PAUSED', payload: !isPaused });
     if(!soundRef.current?.tickingSound.paused) {
       soundRef.current?.tickingSound.pause();
+    }
+    if(modeState.mode === 'focus' && !tasksState.isProgressed) {
+      tasksDispatch({ type: 'SET_IS_PROGRESSED', payload: true });
     }
   }
 
   const skipTimer = () => {
     setIsPaused(true);
-    tasksDispatch({ type: 'TOGGLE_IS_PAUSED', payload: true });
+    tasksDispatch({ type: 'SET_TASK', payload: null });
+    if(modeState.mode === 'focus') {
+      tasksDispatch({ type: 'SET_IS_PROGRESSED', payload: false });
+    }
     soundRef.current?.timerSound.play();
     manageStatusStates();
   }

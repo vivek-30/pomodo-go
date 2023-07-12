@@ -39,7 +39,7 @@ const initialState = {
   ],
   completedTasks: [],
   activeTask: null,
-  isPaused: true
+  isProgressed: false
 }
 
 export const TasksContext = createContext(null);

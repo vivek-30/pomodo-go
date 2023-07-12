@@ -1,23 +1,30 @@
 import Image from 'next/image';
 import { useState, useContext } from 'react';
+import { ModeContext } from '@contexts/modeContext';
 import { TasksContext } from '@contexts/tasksContext';
 import styles from '@styles/components/tasks.module.scss';
 
 const Task = ({ task, editTask }) => {
   const { title, description, totalRounds, completedRounds, status } = task;
   const [isDescriptionOpen, setIsDescriptionOpen] = useState(false);
-  const { state, dispatch } = useContext(TasksContext);
+  const { state: tasksState, dispatch: tasksDispatch } = useContext(TasksContext);
+  const { state: modeState } = useContext(ModeContext);
 
   const handleTaskSelection = () => {
-    if(!state.isPaused) {
+    if(modeState.mode !== 'focus') {
+      alert('This is the time to relax');
+      return;
+    }
+
+    if(tasksState.isProgressed) {
       alert('Please finish the current task first');
       return;
     }
-    dispatch({ type: 'SET_TASK', payload: task });
+    tasksDispatch({ type: 'SET_TASK', payload: task });
   }
 
   const deleteTask = () => {
-    if(state.activeTask?._id === task._id) {
+    if(tasksState.activeTask?._id === task._id) {
       alert('active task cannot be deleted');
       return;
     }
