@@ -100,8 +100,8 @@ const Timer = () => {
 
   const handleEndTimer = () => {
     setIsPaused(true);
-    tasksDispatch({ type: 'SET_TASK', payload: null });
     if(modeState.mode === 'focus') {
+      tasksDispatch({ type: 'SET_TASK', payload: null });
       tasksDispatch({ type: 'SET_IS_PROGRESSED', payload: false });
     }
     soundRef.current?.tickingSound.pause();
@@ -109,7 +109,7 @@ const Timer = () => {
     manageStatusStates();
     setTimeout(() => {
       soundRef.current?.backgroundMusic.play();
-    }, 500);
+    }, 3000);
   }
 
   const resetTimer = () => {
@@ -139,8 +139,8 @@ const Timer = () => {
 
   const skipTimer = () => {
     setIsPaused(true);
-    tasksDispatch({ type: 'SET_TASK', payload: null });
     if(modeState.mode === 'focus') {
+      tasksDispatch({ type: 'SET_TASK', payload: null });
       tasksDispatch({ type: 'SET_IS_PROGRESSED', payload: false });
     }
     soundRef.current?.timerSound.play();
