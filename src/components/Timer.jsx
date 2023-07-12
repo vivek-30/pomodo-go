@@ -43,17 +43,14 @@ const Timer = () => {
   const [isBgMusicPaused, setIsBgMusicPaused] = useState(true);
   const [completedTaskCount, setCompletedTaskCount] = useState(0);
   
-  const clickSoundRef = useRef(null);
-  const timerSoundRef = useRef(null);
-  const tickingSoundRef = useRef(null);
-  const backgroundMusicRef = useRef(null);
+  const soundRef = useRef({});
 
   const { state: modeState, dispatch: modeDispatch } = useContext(ModeContext);
   const { state: tasksState, dispatch: tasksDispatch } = useContext(TasksContext);
 
   useEffect(() => {
     if(isPaused) return;
-    const activateTimer = manageTime(time, setTime, tickingSoundRef, backgroundMusicRef, handleEndTimer);
+    const activateTimer = manageTime(time, setTime, soundRef, handleEndTimer);
     const timerID = setInterval(activateTimer, 1000);
 
     return () => clearInterval(timerID);
@@ -104,11 +101,11 @@ const Timer = () => {
   const handleEndTimer = () => {
     setIsPaused(true);
     tasksDispatch({ type: 'TOGGLE_IS_PAUSED', payload: true });
-    tickingSoundRef.current?.pause();
-    timerSoundRef.current?.play();
+    soundRef.current?.tickingSound.pause();
+    soundRef.current?.timerSound.play();
     manageStatusStates();
     setTimeout(() => {
-      backgroundMusicRef.current?.play();
+      soundRef.current?.backgroundMusic.play();
     }, 500);
   }
 
@@ -126,28 +123,28 @@ const Timer = () => {
   }
 
   const handlePlayPause = () => {
-    clickSoundRef.current?.play();
+    soundRef.current?.clickSound.play();
     setIsPaused(timerState => !timerState);
     tasksDispatch({ type: 'TOGGLE_IS_PAUSED', payload: !isPaused });
-    if(!tickingSoundRef.current?.paused) {
-      tickingSoundRef.current?.pause();
+    if(!soundRef.current?.tickingSound.paused) {
+      soundRef.current?.tickingSound.pause();
     }
   }
 
   const skipTimer = () => {
     setIsPaused(true);
     tasksDispatch({ type: 'TOGGLE_IS_PAUSED', payload: true });
-    timerSoundRef.current?.play();
+    soundRef.current?.timerSound.play();
     manageStatusStates();
   }
 
   const playBgMusic = () => {
     setIsBgMusicPaused(musicState => !musicState);
-    if(!isBgMusicPaused && timerSoundRef.current?.paused && tickingSoundRef.current?.paused) {
-      backgroundMusicRef.current?.play();
+    if(!isBgMusicPaused && soundRef.current?.timerSound.paused && soundRef.current?.tickingSound.paused) {
+      soundRef.current?.backgroundMusic.play();
     }
     else if(isBgMusicPaused) {
-      backgroundMusicRef.current?.pause();
+      soundRef.current?.backgroundMusic.pause();
     }
   }
 
@@ -200,10 +197,10 @@ const Timer = () => {
           <Image src="/assets/icons/forward.svg" alt="foward icon" height={25} width={25} />
         </button>
         <div className="audios hidden">
-          <audio ref={clickSoundRef} src="/assets/audios/click.mp3" />
-          <audio ref={timerSoundRef} src="/assets/audios/timer.mp3" />
-          <audio ref={tickingSoundRef} src="/assets/audios/ticking.mp3" />
-          <audio ref={backgroundMusicRef} src="/assets/audios/BgMusic.mp3" />
+          <audio ref={(ref) => soundRef.current.clickSound = ref} src="/assets/audios/click.mp3" />
+          <audio ref={(ref) => soundRef.current.timerSound = ref} src="/assets/audios/timer.mp3" />
+          <audio ref={(ref) => soundRef.current.tickingSound = ref} src="/assets/audios/ticking.mp3" />
+          <audio ref={(ref) => soundRef.current.backgroundMusic = ref} src="/assets/audios/BgMusic.mp3" />
         </div>
       </div>
       <div className={styles['music__container']}>
