@@ -1,7 +1,12 @@
+import calculateEstimatedTime from '@utilities/calculateEstimatedTime';
+
 const manageTime = (
   { hours, minutes, seconds }, 
   setTime, 
   soundRef, 
+  focusTime,
+  taskData,
+  setEstimatedTime,
   handleEndTimer
 ) => {
   return () => {
@@ -9,6 +14,9 @@ const manageTime = (
     if(hours === 0 && minutes === 0) {
       if(seconds === 0) {
         handleEndTimer();
+        setEstimatedTime(
+          calculateEstimatedTime({ hours, minutes, seconds }, focusTime, taskData)
+        );
         return;
       }
       else if(seconds <= 10) {
@@ -20,12 +28,17 @@ const manageTime = (
     }
 
     if(seconds === 0) {
+      setEstimatedTime(
+        calculateEstimatedTime({ hours, minutes, seconds }, focusTime, taskData)
+      );
       if(minutes == 0) {
         setTime({ hours: hours-1, minutes: 59, seconds });
-      } else {
+      }
+      else {
         setTime({ hours, minutes: minutes - 1, seconds: 59 });
       }
-    } else {
+    }
+    else {
       setTime({ hours, minutes, seconds: seconds - 1 });
     }
   }

@@ -36,10 +36,8 @@ const defaultTaskData = {
 const Timer = () => {
   const [time, setTime] = useState(focusTime);
   const [isPaused, setIsPaused] = useState(true);
+  const [estimatedTime, setEstimatedTime] = useState(0);
   const [taskData, setTaskData] = useState(defaultTaskData);
-  const [estimatedTime, setEstimatedTime] = useState(
-    calculateEstimatedTime(time, focusTime, taskData)
-  );
   const [isBgMusicPaused, setIsBgMusicPaused] = useState(true);
   const [completedTaskCount, setCompletedTaskCount] = useState(0);
   
@@ -50,34 +48,28 @@ const Timer = () => {
 
   useEffect(() => {
     if(isPaused) return;
-    const activatedTimer = manageTime(time, setTime, soundRef, handleEndTimer);
+    const activatedTimer = manageTime(
+      time, setTime, soundRef, focusTime, taskData, setEstimatedTime, handleEndTimer
+    );
     const timerID = setInterval(activatedTimer, 1000);
 
     return () => clearInterval(timerID);
   }, [time, isPaused]);
 
   useEffect(() => {
-    if(isPaused) return;
-
-    const intervalID = setTimeout(() => {
-      const computedTime = calculateEstimatedTime(time, focusTime, taskData);
-      setEstimatedTime(computedTime);
-    }, 60000); // After every 1 minute
-  
-    return () => clearTimeout(intervalID);
-  }, [isPaused, estimatedTime]);
-
-  useEffect(() => {
     if(tasksState.activeTask) {
       setTaskData(tasksState.activeTask);
-      const computedTime = calculateEstimatedTime(time, focusTime, taskData);
-      setEstimatedTime(computedTime);
     }
     else {
       setTaskData(defaultTaskData);
       setEstimatedTime(0);
     }
   }, [tasksState]);
+
+  useEffect(() => {
+    const computedTime = calculateEstimatedTime(time, focusTime, taskData);
+    setEstimatedTime(computedTime);
+  }, [taskData]);
 
   const manageStatusStates = () => {
     if(modeState.mode === 'focus') {
