@@ -165,7 +165,7 @@ const Timer = () => {
         <p className="text-truncate">
           {
             taskData.title === '' ? 
-            modeState.mode === 'focus' ? 'Time to pick some task' : 'Restore your energy for next task' : 
+            modeState.mode === 'focus' ? 'Time to pick some task' : 'Restore your energy' : 
             taskData.title
           }
         </p>

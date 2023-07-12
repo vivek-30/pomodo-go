@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import Tasks from '@components/Tasks';
-import { useState, useContext } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
 import { ModeContext } from '@contexts/modeContext';
 import { TasksContext } from '@contexts/tasksContext';
 import styles from '@styles/components/addTask.module.scss';
@@ -19,6 +19,23 @@ const AddTask = () => {
 
   const { state: modeState } = useContext(ModeContext);
   const { dispatch: tasksDispatch } = useContext(TasksContext);
+
+  const inputRef = useRef({});
+
+  useEffect(() => {
+    if(isFormOpen) {
+      if(inputIndex === 1 && inputRef.current) {
+        inputRef.current.title.focus();
+      }
+      else if(inputIndex === 2 && inputRef.current) {
+        inputRef.current.description.focus();
+      }
+      else if(inputIndex === 3 && inputRef.current) {
+        inputRef.current.totalRounds.focus();
+      }
+    }
+  }, [isFormOpen, inputIndex]);
+  
 
   const openInputForm = () => {
     setIsFormOpen(true);
@@ -166,6 +183,7 @@ const AddTask = () => {
                 placeholder="What it's all about?"
                 value={taskData.title}
                 onChange={handleInputChange}
+                ref={(ref) => inputRef.current.title = ref}
                 spellCheck="false"
                 required
               />
@@ -178,6 +196,7 @@ const AddTask = () => {
                 placeholder="eg - Essential for my physique...."
                 value={taskData.description}
                 onChange={handleInputChange}
+                ref={(ref) => inputRef.current.description = ref}
                 spellCheck="false"
               />
             </div>
@@ -189,6 +208,7 @@ const AddTask = () => {
                 inputMode="numeric"
                 placeholder="Default (3)"
                 onChange={handleInputChange}
+                ref={(ref) => inputRef.current.totalRounds = ref}
                 min={1}
               />
               <button type="button" className={styles['save-task__btn']} onClick={addNewTask}>Save Task</button>
