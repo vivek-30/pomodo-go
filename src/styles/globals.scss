@@ -2,6 +2,10 @@
 @import 'utilities/variables';
 @import 'utilities/extends';
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .flex-center {
   @extend %flex-center;
 }

@@ -91,16 +91,16 @@ const Header = () => {
               <Image
                 src="/assets/icons/user.svg"
                 alt="profile icon"
-                height={35}
-                width={35}
+                height={120}
+                width={120}
               />
             </span>
             <span>
               <Image
                 src={`/assets/icons/${isDropDownOpen ? 'up' : 'down'}-arrow.svg`}
                 alt={`${isDropDownOpen ? 'up' : 'down'} icon`}
-                height={20}
-                width={20}
+                height={90}
+                width={90}
               />
             </span>
           </div>
