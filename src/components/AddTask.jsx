@@ -129,17 +129,17 @@ const AddTask = () => {
 
   return (
     <>
-      <div className={`${styles['add-task__container']} flex-center`}>
+      <div className={`${styles['add-task__container']} flex justify-center items-center`}>
         <div className={`${styles['add-task__control-section']} ${styles[modeState.mode]}`}>
           {isFormOpen === false ? (
-              <button className={`${styles['control-section__btn']} ${styles['btn--lg']}`} onClick={openInputForm}>
+              <button className={`${styles['control-section__btn']} flex justify-center items-center ${styles['btn--lg']}`} onClick={openInputForm}>
                 <Image src="/assets/icons/add-new.svg" alt="add icon" height={25} width={25} />
                 <span>Create Task</span>
               </button>
             ) : (
-            <div className="flex-center">
+            <div className="flex justify-center items-center">
               <button
-                className={styles['control-section__btn']}
+                className={`styles['control-section__btn'] flex justify-center items-center`}
                 onClick={handleBackNavigation}
                 disabled={inputIndex === 1}
               >
@@ -147,14 +147,14 @@ const AddTask = () => {
                 <span>Back</span>
               </button>
               <button
-                className={styles['control-section__btn']}
+                className={`styles['control-section__btn'] flex justify-center items-center`}
                 onClick={closeInputForm}
               >
                 <Image src="/assets/icons/close.svg" alt="close icon" height={30} width={30} />
                 <span>Close</span>
               </button>
               <button
-                className={styles['control-section__btn']}
+                className={`styles['control-section__btn'] flex justify-center items-center`}
                 onClick={handleForwardNavigation}
                 disabled={inputIndex === 3}
               >
@@ -167,9 +167,9 @@ const AddTask = () => {
         
         {isFormOpen && (
           <div className={styles['add-task__progress-bar']}>
-            <span className={`${styles['progress-bar__circle']} ${styles['circle--active']} ${styles[modeState.mode]}`}></span>
-            <span className={`${styles['progress-bar__circle']} ${inputIndex >= 2 ? styles['circle--active'] : ''} ${styles[modeState.mode]}`}></span>
-            <span className={`${styles['progress-bar__circle']} ${inputIndex === 3 ? styles['circle--active'] : ''} ${styles[modeState.mode]}`}></span>
+            <span className={`${styles['progress-bar__circle']} after:top-2/4 after:left-2/4 after:-translate-x-2/4 after:-translate-y-2/4 ${styles['circle--active']} ${styles[modeState.mode]}`}></span>
+            <span className={`${styles['progress-bar__circle']} after:top-2/4 after:left-2/4 after:-translate-x-2/4 after:-translate-y-2/4 ${inputIndex >= 2 ? styles['circle--active'] : ''} ${styles[modeState.mode]}`}></span>
+            <span className={`${styles['progress-bar__circle']} after:top-2/4 after:left-2/4 after:-translate-x-2/4 after:-translate-y-2/4 ${inputIndex === 3 ? styles['circle--active'] : ''} ${styles[modeState.mode]}`}></span>
           </div>
         )}
         

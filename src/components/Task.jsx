@@ -38,7 +38,7 @@ const Task = ({ task, editTask }) => {
   return (
     <li>
       <div className={styles['task-list__task-header']}>
-        <span className="text-truncate" onClick={handleTaskSelection}>{title}</span>
+        <span className="overflow-hidden whitespace-nowrap text-ellipsis" onClick={handleTaskSelection}>{title}</span>
         <div className={styles['task-header__control-icons']}>
           <span data-type="info">
             {completedRounds}/{totalRounds}

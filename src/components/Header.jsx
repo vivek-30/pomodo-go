@@ -46,7 +46,7 @@ const Header = () => {
           <ul role="list" className={`${styles['links-container__links']} ${styles[state.mode]}`}>
             <li>
               <Link href="/analytics">
-                <div data-tool-tip="Analytics" className={`${styles['links__btn']} flex-center`}>
+                <div data-tool-tip="Analytics" className={`${styles['links__btn']} flex justify-center items-center`}>
                   <Image
                     src="/assets/icons/analytics.svg"
                     alt="analytics icon"
@@ -59,7 +59,7 @@ const Header = () => {
             </li>
             <li>
               <Link href="/settings">
-                <div data-tool-tip="Settings" className={`${styles['links__btn']} flex-center`}>
+                <div data-tool-tip="Settings" className={`${styles['links__btn']} flex justify-center items-center`}>
                   <Image
                     src="/assets/icons/settings.svg"
                     alt="settings icon"
@@ -72,7 +72,7 @@ const Header = () => {
             </li>
             <li>
               <Link href="/about">
-                <div data-tool-tip="About" className={`${styles['links__btn']} flex-center`}>
+                <div data-tool-tip="About" className={`${styles['links__btn']} flex justify-center items-center`}>
                   <Image
                     src="/assets/icons/description.svg"
                     alt="description icon"
@@ -86,7 +86,7 @@ const Header = () => {
           </ul>
         </div>
         <div className={styles['nav__profile']}>
-          <div className="flex-center" onClick={handleProfileNav}>
+          <div className="flex justify-center items-center" onClick={handleProfileNav}>
             <span>
               <Image
                 src="/assets/icons/user.svg"

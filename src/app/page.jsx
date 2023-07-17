@@ -4,8 +4,8 @@ import styles from '@styles/pages/page.module.scss';
 
 const Page = () => {
   return (
-    <main className={`${styles['main__container']} flex-center`}>
-      <section className={`${styles['timer__section']} flex-center`}>
+    <main className={`${styles['main__container']} flex justify-center items-center`}>
+      <section className={`${styles['timer__section']} flex justify-center items-center`}>
         <Timer />
       </section>
       <section className='tasks__section'>

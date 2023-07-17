@@ -1,5 +1,4 @@
 @import '../utilities/variables';
-@import '../utilities/extends';
 @import '../utilities/mixins';
 @import '../utilities/media-queries';
 
@@ -145,7 +144,6 @@
 
     img {
       position: absolute;
-      @extend %top-left-center;
     }
 
     &:hover {

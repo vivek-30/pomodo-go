@@ -154,13 +154,13 @@ const Timer = () => {
 
   return (
     <>
-      <div className={`${styles['timer__status']} ${styles[modeState.mode]} flex-center`}>
+      <div className={`${styles['timer__status']} ${styles[modeState.mode]} flex justify-center items-center`}>
         {statusInfo.image}
         <span>{statusInfo.text}</span>
       </div>
       <div className={`${styles['timer__box']} ${styles[modeState.mode]}`}>
         <p>{currentFormatedTime}</p>
-        <p className="text-truncate">
+        <p className="overflow-hidden whitespace-nowrap text-ellipsis">
           {
             taskData.title === '' ? 
             modeState.mode === 'focus' ? 'Time to pick some task' : 'Restore your energy' : 
@@ -184,7 +184,13 @@ const Timer = () => {
       <div className={`${styles['divider']} ${styles[modeState.mode]}`}></div>
       <div className={`${styles['timer__controls']} ${styles[modeState.mode]}`}>
         <button onClick={resetTimer}>
-          <Image src="/assets/icons/redo.svg" alt="clock-reset icon" height={25} width={25} />
+          <Image
+            src="/assets/icons/redo.svg" 
+            alt="clock-reset icon" 
+            height={25} 
+            width={25}
+            className="top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4"
+          />
         </button>
         <button onClick={handlePlayPause}>
           <Image
@@ -192,10 +198,17 @@ const Timer = () => {
             height={60}
             src={`/assets/icons/${isPaused ? 'play' : 'pause'}.svg`}
             alt={`${isPaused ? 'play' : 'pause'} icon`}
+            className="top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4"
           />
         </button>
         <button onClick={skipTimer}>
-          <Image src="/assets/icons/forward.svg" alt="foward icon" height={25} width={25} />
+          <Image
+            src="/assets/icons/forward.svg"
+            alt="foward icon"
+            height={25}
+            width={25}
+            className="top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4"
+          />
         </button>
         <div className="audios hidden">
           <audio ref={(ref) => soundRef.current.clickSound = ref} src="/assets/audios/click.mp3" />

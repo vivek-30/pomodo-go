@@ -1,5 +1,4 @@
 @import '../utilities/variables';
-@import '../utilities/extends';
 
 .add-task__container {
   margin: 1rem auto;
@@ -14,10 +13,6 @@
 
   > div {
     gap: .3rem;
-  }
-
-  button {
-    @extend %flex-center;
   }
 }
 
@@ -81,7 +76,6 @@
   &::after {
     content: '';
     display: inline-block;
-    @extend %top-left-center;
     height: 3px;
     width: 12rem;
     position: absolute;
