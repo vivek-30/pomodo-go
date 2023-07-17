@@ -11,12 +11,15 @@ const poppins = Poppins({
 });
 
 const App = ({ parentsChild }) => {
-  const { state } = useContext(ModeContext);
+  const { state: { mode } } = useContext(ModeContext);
 
   return (
-    <body className={`${poppins.className} body--${state.mode}`}>
+    <body className={`
+      ${poppins.className} 
+      ${mode === 'focus' ? 'bg-red-100' : mode === 'short-break' ? 'bg-green-100' : 'bg-blue-100'}
+    `}>
       <Header />
-      { parentsChild }
+      {parentsChild}
     </body>
   );
 }

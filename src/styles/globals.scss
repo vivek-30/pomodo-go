@@ -1,22 +1,3 @@
-@import 'normalize';
-@import 'utilities/variables';
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-.hidden {
-  display: none !important;
-}
-
-.body--focus {
-  background-color: $body-light-red;
-}
-
-.body--short-break {
-  background-color: $body-light-green;
-}
-
-.body--long-break {
-  background-color: $body-light-blue;
-}
