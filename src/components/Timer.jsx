@@ -3,7 +3,6 @@ import Image from 'next/image';
 import { useState, useEffect, useRef, useContext } from 'react';
 import { ModeContext } from '@contexts/modeContext';
 import { TasksContext } from '@contexts/tasksContext';
-import styles from '@styles/components/timer.module.scss';
 
 import manageTime from '@/utilities/manageTime';
 import formatTime from '@utilities/formatTime';
@@ -154,13 +153,19 @@ const Timer = () => {
 
   return (
     <>
-      <div className={`${styles['timer__status']} ${styles[modeState.mode]} flex justify-center items-center`}>
+      <div className={`w-max mt-4 flex justify-center items-center gap-[0.6rem] md:gap-[0.8rem] border-2 rounded-[2rem] text-[0.9rem] md:text-[1.2rem] py-[0.4rem] md:py-[0.6rem] px-[0.8rem] ${modeState.mode === 'focus' ? 'bg-red-200 border-red-800 text-red-800' : modeState.mode === 'short-break' ? 'bg-green-200 border-green-800 text-green-800' : 'bg-blue-200 border-sky-800 text-sky-900'}`}>
         {statusInfo.image}
         <span>{statusInfo.text}</span>
       </div>
-      <div className={`${styles['timer__box']} ${styles[modeState.mode]}`}>
-        <p>{currentFormatedTime}</p>
-        <p className="overflow-hidden whitespace-nowrap text-ellipsis">
+
+      {/*.timer__box.focus { box-shadow: 1px 1px 4px 10px #ebd4d4;}
+        .timer__box.short-break { box-shadow: 1px 1px 4px 10px #d6e5d6;}
+        .timer__box.long-break { box-shadow: 1px 1px 4px 10px #cfdee5;}*/}
+
+      <div className={`relative w-[17rem] md:w-80 h-[16rem] md:h-[19rem] max-h-80  my-[1.3rem] rounded-[50%] border-[0.4rem] ${modeState.mode === 'focus' ? 'text-red-800 border-red-800' : modeState.mode === 'short-break' ? 'text-green-800 border-green-800' : 'border-sky-800 text-sky-900'}`}>
+        <p className="absolute left-2/4 top-2/4 text-[3rem] md:text-[4em] -translate-x-2/4 -translate-y-2/4">{currentFormatedTime}</p>
+
+        <p className="absolute left-2/4 bottom-[24%] w-max max-w-[13.5rem] -translate-x-2/4 p-[0.1rem] overflow-hidden whitespace-nowrap text-ellipsis">
           {
             taskData.title === '' ? 
             modeState.mode === 'focus' ? 'Time to pick some task' : 'Restore your energy' : 
@@ -168,57 +173,59 @@ const Timer = () => {
           }
         </p>
       </div>
-      <div className={`${styles['divider']} ${styles[modeState.mode]}`}></div>
-      <div className={`${styles['timer__info']} ${styles[modeState.mode]}`}>
+
+      <div className={`w-[21rem] md:w-[25rem] h-[1px] opacity-60 ${modeState.mode === 'focus' ? 'bg-pink-800' : modeState.mode === 'short-break' ? 'bg-green-600' : 'bg-sky-900'}`}></div>
+      <div className="my-4">
         {
           taskData.totalRounds !== 0 ? (
             <>
-              <span>Rounds: {taskData.completedRounds}/{taskData.totalRounds}</span>
-              <span>Estimated Time: {estimatedTime} mins</span>
+              <span className={`my-2 mx-[0.2rem] p-[0.4rem] text-[0.9rem] md:text-[1.09rem] rounded-[6px] text-gray-800 shadow-md ${modeState.mode === 'focus' ? 'bg-[#fddada]' : modeState.mode === 'short-break' ? 'bg-[#d6ecd6]' : 'bg-[#cce6f6]'}`}>Rounds: {taskData.completedRounds}/{taskData.totalRounds}</span>
+
+              <span className={`my-2 mx-[0.2rem] p-[0.4rem] text-[0.9rem] md:text-[1.09rem] rounded-[6px] text-gray-800 shadow-md ${modeState.mode === 'focus' ? 'bg-[#fddada]' : modeState.mode === 'short-break' ? 'bg-[#d6ecd6]' : 'bg-[#cce6f6]'}`}>Estimated Time: {estimatedTime} mins</span>
             </>
           ) : (
-            <p>No Task Selected</p>
+            <p className={`text-[1.3rem] ${modeState.mode === 'focus' ? 'text-red-800' : modeState.mode === 'short-break' ? 'text-green-800' : 'text-sky-800'}`}>No Task Selected</p>
           )
         }
       </div>
-      <div className={`${styles['divider']} ${styles[modeState.mode]}`}></div>
-      <div className={`${styles['timer__controls']} ${styles[modeState.mode]}`}>
-        <button onClick={resetTimer}>
+      <div className={`w-[21rem] md:w-[25rem] h-[1px] opacity-60 ${modeState.mode === 'focus' ? 'bg-pink-800' : modeState.mode === 'short-break' ? 'bg-green-600' : 'bg-sky-800'}`}></div>
+      <div className={`flex items-center gap-4 my-[0.8rem]`}>
+        <button onClick={resetTimer} className={`w-[4.5rem] h-14 relative cursor-pointer border-none rounded-[0.8rem] shadow-lg hover:shadow-md hover:scale-[0.98] ${modeState.mode === 'focus' ? 'bg-red-300' : modeState.mode === 'short-break' ? 'bg-[#c0e1c0]' : 'bg-[#b0dcf7]'}`}>
           <Image
             src="/assets/icons/redo.svg" 
             alt="clock-reset icon" 
             height={25} 
             width={25}
-            className="top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4"
+            className="absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4"
           />
         </button>
-        <button onClick={handlePlayPause}>
+        <button onClick={handlePlayPause} className={`w-[5.8rem] h-[4.2rem] relative cursor-pointer border-none rounded-[0.8rem] shadow-lg hover:shadow-md hover:scale-[0.98] ${modeState.mode === 'focus' ? 'bg-red-400' : modeState.mode === 'short-break' ? 'bg-[#7bbc7a]' : 'bg-[#7ec3ee]'}`}>
           <Image
             width={60}
             height={60}
             src={`/assets/icons/${isPaused ? 'play' : 'pause'}.svg`}
             alt={`${isPaused ? 'play' : 'pause'} icon`}
-            className="top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4"
+            className="absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4"
           />
         </button>
-        <button onClick={skipTimer}>
+        <button onClick={skipTimer} className={`w-[4.5rem] h-14 relative cursor-pointer border-none rounded-[0.8rem] shadow-lg hover:shadow-md hover:scale-[0.98] ${modeState.mode === 'focus' ? 'bg-red-300' : modeState.mode === 'short-break' ? 'bg-[#c0e1c0]' : 'bg-[#b0dcf7]'}`}>
           <Image
             src="/assets/icons/forward.svg"
             alt="foward icon"
             height={25}
             width={25}
-            className="top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4"
+            className="absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4"
           />
         </button>
-        <div className="audios hidden">
+        <div className="hidden">
           <audio ref={(ref) => soundRef.current.clickSound = ref} src="/assets/audios/click.mp3" />
           <audio ref={(ref) => soundRef.current.timerSound = ref} src="/assets/audios/timer.mp3" />
           <audio ref={(ref) => soundRef.current.tickingSound = ref} src="/assets/audios/ticking.mp3" />
           <audio ref={(ref) => soundRef.current.backgroundMusic = ref} src="/assets/audios/BgMusic.mp3" />
         </div>
       </div>
-      <div className={styles['music__container']}>
-        <Image src="/assets/icons/headphone.svg" alt="headphone icon" height={80} width={80} onClick={playBgMusic} />
+      <div className="fixed max-w-[9rem] h-20 rounded-[50%] left-[3%] bottom-[7%] z-10 hidden md:block">
+        <Image src="/assets/icons/headphone.svg" alt="headphone icon" height={80} width={80} onClick={playBgMusic} className="cursor-pointer" />
       </div>
     </>
   );
