@@ -158,11 +158,7 @@ const Timer = () => {
         <span>{statusInfo.text}</span>
       </div>
 
-      {/*.timer__box.focus { box-shadow: 1px 1px 4px 10px #ebd4d4;}
-        .timer__box.short-break { box-shadow: 1px 1px 4px 10px #d6e5d6;}
-        .timer__box.long-break { box-shadow: 1px 1px 4px 10px #cfdee5;}*/}
-
-      <div className={`relative w-[17rem] md:w-80 h-[16rem] md:h-[19rem] max-h-80  my-[1.3rem] rounded-[50%] border-[0.4rem] ${modeState.mode === 'focus' ? 'text-red-800 border-red-800' : modeState.mode === 'short-break' ? 'text-green-800 border-green-800' : 'border-sky-800 text-sky-900'}`}>
+      <div className={`relative w-[17rem] md:w-80 h-[16rem] md:h-[19rem] max-h-80  my-[1.3rem] rounded-[50%] border-[0.4rem] shadow-[1px_1px_4px_10px] ${modeState.mode === 'focus' ? 'text-red-800 border-red-800 shadow-[#ebd4d4]' : modeState.mode === 'short-break' ? 'text-green-800 border-green-800 shadow-[#d6e5d6]' : 'border-sky-800 text-sky-900 shadow-[#cfdee5]'}`}>
         <p className="absolute left-2/4 top-2/4 text-[3rem] md:text-[4em] -translate-x-2/4 -translate-y-2/4">{currentFormatedTime}</p>
 
         <p className="absolute left-2/4 bottom-[24%] w-max max-w-[13.5rem] -translate-x-2/4 p-[0.1rem] overflow-hidden whitespace-nowrap text-ellipsis">
@@ -174,7 +170,7 @@ const Timer = () => {
         </p>
       </div>
 
-      <div className={`w-[21rem] md:w-[25rem] h-[1px] opacity-60 ${modeState.mode === 'focus' ? 'bg-pink-800' : modeState.mode === 'short-break' ? 'bg-green-600' : 'bg-sky-900'}`}></div>
+      <div className={`w-[21rem] md:w-[25rem] h-[1px] opacity-60 ${modeState.mode === 'focus' ? 'bg-pink-800' : modeState.mode === 'short-break' ? 'bg-green-600' : 'bg-sky-900'}`} />
       <div className="my-4">
         {
           taskData.totalRounds !== 0 ? (
@@ -188,7 +184,7 @@ const Timer = () => {
           )
         }
       </div>
-      <div className={`w-[21rem] md:w-[25rem] h-[1px] opacity-60 ${modeState.mode === 'focus' ? 'bg-pink-800' : modeState.mode === 'short-break' ? 'bg-green-600' : 'bg-sky-800'}`}></div>
+      <div className={`w-[21rem] md:w-[25rem] h-[1px] opacity-60 ${modeState.mode === 'focus' ? 'bg-pink-800' : modeState.mode === 'short-break' ? 'bg-green-600' : 'bg-sky-800'}`} />
       <div className={`flex items-center gap-4 my-[0.8rem]`}>
         <button onClick={resetTimer} className={`w-[4.5rem] h-14 relative cursor-pointer border-none rounded-[0.8rem] shadow-lg hover:shadow-md hover:scale-[0.98] ${modeState.mode === 'focus' ? 'bg-red-300' : modeState.mode === 'short-break' ? 'bg-[#c0e1c0]' : 'bg-[#b0dcf7]'}`}>
           <Image
