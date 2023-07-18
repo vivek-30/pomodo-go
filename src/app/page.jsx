@@ -1,14 +1,13 @@
 import Timer from '@components/Timer';
 import AddTask from '@components/AddTask';
-import styles from '@styles/pages/page.module.scss';
 
 const Page = () => {
   return (
-    <main className={`${styles['main__container']} flex justify-center items-center`}>
-      <section className={`${styles['timer__section']} flex justify-center items-center`}>
+    <main className="min-w-[375px] flex flex-col justify-center items-center">
+      <section className="flex flex-col justify-center items-center">
         <Timer />
       </section>
-      <section className='tasks__section'>
+      <section>
         <AddTask />
       </section>
     </main>
