@@ -4,7 +4,6 @@ import Tasks from '@components/Tasks';
 import { useState, useEffect, useRef, useContext } from 'react';
 import { ModeContext } from '@contexts/modeContext';
 import { TasksContext } from '@contexts/tasksContext';
-import styles from '@styles/components/addTask.module.scss';
 
 const initialTaskData = {
   title: '',
@@ -129,17 +128,17 @@ const AddTask = () => {
 
   return (
     <>
-      <div className={`${styles['add-task__container']} flex justify-center items-center`}>
-        <div className={`${styles['add-task__control-section']} ${styles[modeState.mode]}`}>
+      <div className="w-[30%] min-w-[375px] my-4 mx-auto flex flex-col justify-center items-center">
+        <div className="w-full my-4">
           {isFormOpen === false ? (
-              <button className={`${styles['control-section__btn']} flex justify-center items-center ${styles['btn--lg']}`} onClick={openInputForm}>
+              <button className="w-[96%] mt-4 mx-auto text-green-900 py-[.7rem] px-4 flex justify-center items-center gap-2 cursor-pointer text-[1.3rem] rounded-[7px] bg-green-200 border-2 border-green-800" onClick={openInputForm}>
                 <Image src="/assets/icons/add-new.svg" alt="add icon" height={25} width={25} />
                 <span>Create Task</span>
               </button>
             ) : (
-            <div className="flex justify-center items-center">
+            <div className="flex justify-center items-center gap-[0.3rem]">
               <button
-                className={`styles['control-section__btn'] flex justify-center items-center`}
+                className={`py-2 px-4 flex justify-center items-center gap-2 cursor-pointer text-[1.08rem] rounded-[7px] disabled:cursor-not-allowed disabled:opacity-50 border-2 ${modeState.mode === 'focus' ? 'text-red-800 bg-red-200 border-red-800' : modeState.mode === 'short-break' ? 'text-green-800 bg-green-200 border-green-800' : 'text-sky-900 bg-blue-200 border-sky-800'}`}
                 onClick={handleBackNavigation}
                 disabled={inputIndex === 1}
               >
@@ -147,14 +146,14 @@ const AddTask = () => {
                 <span>Back</span>
               </button>
               <button
-                className={`styles['control-section__btn'] flex justify-center items-center`}
+                className={`py-2 px-4 flex justify-center items-center gap-2 cursor-pointer text-[1.08rem] rounded-[7px] border-2 ${modeState.mode === 'focus' ? 'text-red-800 bg-red-200 border-red-800' : modeState.mode === 'short-break' ? 'text-green-800 bg-green-200 border-green-800' : 'text-sky-900 bg-blue-200 border-sky-800'}`}
                 onClick={closeInputForm}
               >
                 <Image src="/assets/icons/close.svg" alt="close icon" height={30} width={30} />
                 <span>Close</span>
               </button>
               <button
-                className={`styles['control-section__btn'] flex justify-center items-center`}
+                className={`py-2 px-4 flex justify-center items-center gap-2 cursor-pointer text-[1.08rem] rounded-[7px] disabled:cursor-not-allowed disabled:opacity-50 border-2 ${modeState.mode === 'focus' ? 'text-red-800 bg-red-200 border-red-800' : modeState.mode === 'short-break' ? 'text-green-800 bg-green-200 border-green-800' : 'text-sky-900 bg-blue-200 border-sky-800'}`}
                 onClick={handleForwardNavigation}
                 disabled={inputIndex === 3}
               >
@@ -166,17 +165,20 @@ const AddTask = () => {
         </div>
         
         {isFormOpen && (
-          <div className={styles['add-task__progress-bar']}>
-            <span className={`${styles['progress-bar__circle']} after:top-2/4 after:left-2/4 after:-translate-x-2/4 after:-translate-y-2/4 ${styles['circle--active']} ${styles[modeState.mode]}`}></span>
-            <span className={`${styles['progress-bar__circle']} after:top-2/4 after:left-2/4 after:-translate-x-2/4 after:-translate-y-2/4 ${inputIndex >= 2 ? styles['circle--active'] : ''} ${styles[modeState.mode]}`}></span>
-            <span className={`${styles['progress-bar__circle']} after:top-2/4 after:left-2/4 after:-translate-x-2/4 after:-translate-y-2/4 ${inputIndex === 3 ? styles['circle--active'] : ''} ${styles[modeState.mode]}`}></span>
+          <div className="relative w-[96%] my-4 flex justify-between overflow-hidden">
+            <span className={`relative w-[20px] h-[20px] rounded-full after:content-[''] after:absolute after:top-2/4 after:left-2/4 after:-translate-x-2/4 after:-translate-y-2/4 after:inline-block after:w-[11.5rem]
+            after:h-[3px] after:z-10 ${modeState.mode === 'focus' ? 'bg-red-800 after:bg-red-800' : modeState.mode === 'short-break' ? 'bg-green-800 after:bg-green-800' : 'bg-sky-800 after:bg-sky-800'}`} />
+
+            <span className={`relative w-[20px] h-[20px] rounded-full after:top-2/4 after:left-2/4 after:-translate-x-2/4 after:-translate-y-2/4 after:content-[''] after:absolute after:inline-block after:w-[11.5rem] after:h-[3px] ${inputIndex >= 2 ? (`after:z-10 ${modeState.mode === 'focus' ? 'bg-red-800 after:bg-red-800' : modeState.mode === 'short-break' ? 'bg-green-800 after:bg-green-800' : 'bg-sky-800 after:bg-sky-800'}`) : 'bg-gray-400 after:bg-gray-400'}`} />
+
+            <span className={`relative w-[20px] h-[20px] rounded-full after:top-2/4 after:left-2/4 after:-translate-x-2/4 after:-translate-y-2/4 after:content-[''] after:absolute after:inline-block after:w-[11.5rem] after:h-[3px] ${inputIndex === 3 ?  (`after:z-10 ${modeState.mode === 'focus' ? 'bg-red-800 after:bg-red-800' : modeState.mode === 'short-break' ? 'bg-green-800 after:bg-green-800' : 'bg-sky-800 after:bg-sky-800'}`) : 'bg-gray-400 after:bg-gray-400'}`} />
           </div>
         )}
         
         {isFormOpen && (
-          <form className={`${styles['add-task__form']} ${styles[modeState.mode]}`} onKeyUp={handleFormInteractivity}>
-            <div className={`${styles['form__input-field']} ${inputIndex === 1 ? 'input-field--active' : 'hidden'}`}>
-              <label htmlFor="title">Create a new task:</label>
+          <form className="w-full" onKeyUp={handleFormInteractivity}>
+            <div className={`w-[96%] m-auto ${inputIndex === 1 ? 'input-field--active' : 'hidden'}`}>
+              <label className={`block text-[1.1rem] ${modeState.mode === 'focus' ? 'text-red-800' : modeState.mode === 'short-break' ? 'text-green-800' : 'text-sky-900'}`} htmlFor="title">Create a new task:</label>
               <input
                 id="title"
                 type="text"
@@ -185,11 +187,12 @@ const AddTask = () => {
                 onChange={handleInputChange}
                 ref={(ref) => inputRef.current.title = ref}
                 spellCheck="false"
+                className={`w-full my-2 p-[0.6rem] rounded-md bg-gray-100 text-gray-800 text-[1.3rem] border-2 outline-0 ${modeState.mode === 'focus' ? 'border-red-800' : modeState.mode === 'short-break' ? 'border-green-800' : 'border-sky-800'}`}
                 required
               />
             </div>
-            <div className={`${styles['form__input-field']} ${inputIndex === 2 ? 'input-field--active' : 'hidden'}`}>
-              <label htmlFor="description">Want to add description:</label>
+            <div className={`${inputIndex === 2 ? 'input-field--active' : 'hidden'}`}>
+              <label className={`block text-[1.1rem] ${modeState.mode === 'focus' ? 'text-red-800' : modeState.mode === 'short-break' ? 'text-green-800' : 'text-sky-900'}`}htmlFor="description">Want to add description:</label>
               <textarea
                 id="description"
                 type="text"
@@ -197,21 +200,23 @@ const AddTask = () => {
                 value={taskData.description}
                 onChange={handleInputChange}
                 ref={(ref) => inputRef.current.description = ref}
+                className={`w-full h-24 my-2 p-[0.6rem] rounded-md bg-gray-100 text-gray-800 text-[1.3rem] overflow-scroll resize-none border-2 outline-0 ${modeState.mode === 'focus' ? 'border-red-800' : modeState.mode === 'short-break' ? 'border-green-800' : 'border-sky-800'}`}
                 spellCheck="false"
               />
             </div>
-            <div className={`${styles['form__input-field']} ${inputIndex === 3 ? 'input-field--active' : 'hidden'}`}>
-              <label htmlFor="rounds">Number of rounds you want to go for:</label>
+            <div className={`${inputIndex === 3 ? 'input-field--active' : 'hidden'}`}>
+              <label className={`block text-[1.1rem] ${modeState.mode === 'focus' ? 'text-red-800' : modeState.mode === 'short-break' ? 'text-green-800' : 'text-sky-900'}`} htmlFor="rounds">Number of rounds you want to go for:</label>
               <input
                 id="totalRounds"
                 type="number"
                 inputMode="numeric"
                 placeholder="Default (3)"
                 onChange={handleInputChange}
+                className={`w-[48%] my-2 p-[0.6rem] rounded-md bg-gray-100 text-gray-800 text-[1.3rem] border-2 outline-0 ${modeState.mode === 'focus' ? 'border-red-800' : modeState.mode === 'short-break' ? 'border-green-800' : 'border-sky-800'}`}
                 ref={(ref) => inputRef.current.totalRounds = ref}
                 min={1}
               />
-              <button type="button" className={styles['save-task__btn']} onClick={addNewTask}>Save Task</button>
+              <button type="button" className="w-[48%] ml-[0.9rem] py-[0.6rem] px-4 rounded-lg border-2 bg-green-200 border-green-800 cursor-pointer text-[1.3rem] text-green-900 hover:text-gray-900 hover:bg-green-300" onClick={addNewTask}>Save Task</button>
             </div>
           </form>
         )}
