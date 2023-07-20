@@ -170,7 +170,7 @@ const Timer = () => {
         </p>
       </div>
 
-      <div className={`w-[21rem] md:w-[25rem] h-[1px] opacity-60 ${modeState.mode === 'focus' ? 'bg-pink-800' : modeState.mode === 'short-break' ? 'bg-green-600' : 'bg-sky-900'}`} />
+      <div className={`w-[21rem] md:w-[25rem] h-[1px] opacity-60 ${modeState.mode === 'focus' ? 'bg-pink-800' : modeState.mode === 'short-break' ? 'bg-green-800' : 'bg-sky-900'}`} />
       <div className="my-4">
         {
           taskData.totalRounds !== 0 ? (
@@ -184,7 +184,7 @@ const Timer = () => {
           )
         }
       </div>
-      <div className={`w-[21rem] md:w-[25rem] h-[1px] opacity-60 ${modeState.mode === 'focus' ? 'bg-pink-800' : modeState.mode === 'short-break' ? 'bg-green-600' : 'bg-sky-800'}`} />
+      <div className={`w-[21rem] md:w-[25rem] h-[1px] opacity-60 ${modeState.mode === 'focus' ? 'bg-pink-800' : modeState.mode === 'short-break' ? 'bg-green-800' : 'bg-sky-800'}`} />
       <div className={`flex items-center gap-4 my-[0.8rem]`}>
         <button onClick={resetTimer} className={`w-[4.5rem] h-14 relative cursor-pointer border-none rounded-[0.8rem] shadow-lg hover:shadow-md hover:scale-[0.98] ${modeState.mode === 'focus' ? 'bg-red-300' : modeState.mode === 'short-break' ? 'bg-[#c0e1c0]' : 'bg-[#b0dcf7]'}`}>
           <Image
