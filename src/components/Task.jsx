@@ -2,7 +2,6 @@ import Image from 'next/image';
 import { useState, useContext } from 'react';
 import { ModeContext } from '@contexts/modeContext';
 import { TasksContext } from '@contexts/tasksContext';
-import styles from '@styles/components/tasks.module.scss';
 
 const Task = ({ task, editTask }) => {
   const { title, description, totalRounds, completedRounds, status } = task;
@@ -36,29 +35,32 @@ const Task = ({ task, editTask }) => {
   }
 
   return (
-    <li>
-      <div className={styles['task-list__task-header']}>
-        <span className="overflow-hidden whitespace-nowrap text-ellipsis" onClick={handleTaskSelection}>{title}</span>
-        <div className={styles['task-header__control-icons']}>
-          <span data-type="info">
+    <li className="w-full py-4 px-[0.6rem] bg-gray-100 border-b border-b-gray-900">
+      <div className="flex justify-between items-center">
+        <span className="max-w-[11rem] overflow-hidden whitespace-nowrap text-ellipsis text-[1.1rem] cursor-pointer" onClick={handleTaskSelection}>{title}</span>
+        <div className="flex items-center gap-[0.4rem]">
+          <span className="p-[5px] rounded-full cursor-pointer" data-type="info">
             {completedRounds}/{totalRounds}
           </span>
-          <span onClick={editTask(task)} data-type="edit">
+
+          <span className="p-[5px] rounded-full cursor-pointer hover:bg-gray-300" onClick={editTask(task)} data-type="edit">
             <Image src="/assets/icons/edit.svg" alt="edit icon" height={20} width={20} />
           </span>
-          <span onClick={deleteTask} data-type="delete">
+
+          <span className="p-[5px] rounded-full cursor-pointer hover:bg-gray-300" onClick={deleteTask} data-type="delete">
             <Image src="/assets/icons/delete.svg" alt="delete icon" height={20} width={20} />
           </span>
-          <span onClick={toggleDescriptionSection} data-type="description">
+
+          <span className="p-[5px] rounded-full cursor-pointer hover:bg-gray-300" onClick={toggleDescriptionSection} data-type="description">
             <Image src="/assets/icons/down-arrow.svg" alt="down-arrow icon" height={20} width={20} />
           </span>
         </div>
       </div>
       {
         isDescriptionOpen && (
-        <div className={styles['task-list__task-body']}>
+        <div className={`w-[21rem] h-24 mt-[0.4rem] p-[10px] border-t border-t-gray-900 text-[0.9rem] overflow-scroll ${modeState.mode === 'focus' ? 'bg-[#f9f4f4]' : modeState.mode === 'short-break' ? 'bg-[#f0fdf0]' : 'bg-[#e2f5ff]'}`}>
           {description}
-          <span>Read More</span>
+          <span className="mx-[2px] underline text-blue-800 cursor-pointer">Read More</span>
         </div>
       )}
     </li>
